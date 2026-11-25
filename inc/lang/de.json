@@ -30,7 +30,16 @@
   "sub": "KeFamily vereint KePixel, KeMarq, KeChat und KeClinic unter einem Dach — von der ersten Anzeige, die ein Kunde sieht, bis zum Kauf, zur Buchung und zum Wiederkommen.",
   "cta1": "Unsere Unternehmen",
   "cta2": "Per WhatsApp schreiben",
-  "scroll": "Scrollen"
+  "scroll": "Scrollen",
+  "eyebrow": "Die Muttergesellschaft von vier Marketing- und Tech-Unternehmen",
+  "title_a": "Eine Familie, die",
+  "rotate": [
+   "Kunden bringt.",
+   "jeden Schritt misst.",
+   "Chats in Umsatz verwandelt.",
+   "Ihre Klinik führt."
+  ],
+  "core": "Familie"
  },
  "hero2": {
   "title_a": "Eine Familie.",
@@ -1003,5 +1012,23 @@
   "faq_t": "Fragen zur Branche",
   "others_t": "Weitere Branchen",
   "more": "Mehr erfahren"
- }
+ },
+ "marquee": [
+  "Serverseitiges Tracking",
+  "Performance-Anzeigen",
+  "WhatsApp-Automatisierung",
+  "Klinikbuchungen",
+  "Meta",
+  "Snapchat",
+  "TikTok",
+  "Google Ads",
+  "GA4",
+  "Salla",
+  "Zid",
+  "Shopify",
+  "WordPress",
+  "Gemeinsames Postfach",
+  "Einheitliches Reporting",
+  "KI-Insights"
+ ]
 }

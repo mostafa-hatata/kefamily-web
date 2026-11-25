@@ -60,7 +60,7 @@ $bk = kf_get( 'book' );
 						<label class="field"><span><?php echo esc_html( $bk['topic'] ); ?></span><textarea name="topic" rows="3"></textarea></label>
 					</fieldset>
 
-					<button class="btn btn--lg btn--block" type="submit" data-book-submit><?php echo kf_icon( 'check' ); // phpcs:ignore ?><span data-label><?php echo esc_html( $bk['confirm'] ); ?></span></button>
+					<button class="btn btn--shimmer btn--block" type="submit" data-book-submit><span class="btn__shine" aria-hidden="true"></span><?php echo kf_icon( 'check' ); // phpcs:ignore ?><span class="btn__label" data-label><?php echo esc_html( $bk['confirm'] ); ?></span></button>
 					<p class="form__status" role="status" aria-live="polite" data-book-status></p>
 				</form>
 			</div>

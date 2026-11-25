@@ -10,8 +10,8 @@ $hl = isset( $args['heading_level'] ) ? $args['heading_level'] : 'h3';
 ?>
 <div class="bento">
 	<?php foreach ( array_keys( kf_brands_meta() ) as $i => $s ) : $b = kf_brand( $s ); ?>
-		<article class="card card--<?php echo esc_attr( $s ); ?> reveal" style="<?php echo esc_attr( kf_brand_style( $s ) ); ?>;--d:<?php echo esc_attr( 0.06 * $i ); ?>s">
-			
+		<article class="card card--<?php echo esc_attr( $s ); ?> spotlight reveal" style="<?php echo esc_attr( kf_brand_style( $s ) ); ?>;--d:<?php echo esc_attr( 0.06 * $i ); ?>s" data-spotlight>
+			<span class="beam" aria-hidden="true"></span>
 			<div class="card__visual" aria-hidden="true"><?php kf_part( 'visual', array( 'slug' => $s ) ); ?></div>
 			<div class="card__body">
 				<div class="card__top">

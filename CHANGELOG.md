@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0 — 2026-11-25
+
+- Back to the v1.1 look (orbit hero, particles, aurora, marquee, bento cards
+  with live product screens, beams, retro-grid CTA) at Mostafa's request,
+  keeping everything added in 1.2: 4 languages, official logos, /book/,
+  WhatsApp + meeting dock, blog, SEO.
+- More motion: scroll progress bar in the four brand colours, hero title
+  letters rise in (words in Arabic), section titles lift in word by word,
+  cursor glow in the hero, orbit parallax, 3D tilt on cards, click ripple,
+  pulsing WhatsApp button, animated slots/days in booking, sweeping brand
+  line on alternate sections, animated chat panel. All off under
+  prefers-reduced-motion.
+- Light is still the default mode.
+
 ## 1.2.0 — 2026-11-25
 
 Design (editorial direction, see docs/DESIGN.md)

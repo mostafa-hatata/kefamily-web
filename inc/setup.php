@@ -42,7 +42,7 @@ add_action(
 			array(
 				'ajax'    => admin_url( 'admin-ajax.php' ),
 				'lang'    => kf_lang(),
-				'rotate'  => kf_get( 'hero2.rotate' ),
+				'rotate'  => kf_get( 'hero.rotate' ),
 				'book'    => array(
 					'endpoint' => kf_booking_endpoint(),
 					'nonce'    => wp_create_nonce( 'kf_book' ),
@@ -75,10 +75,10 @@ add_action(
 	'wp_head',
 	function () {
 		$fonts = array( 'ar' => 'readex-pro-arabic-wght-normal.woff2', 'ru' => 'manrope-cyrillic-wght-normal.woff2' );
-		$font  = isset( $fonts[ kf_lang() ] ) ? $fonts[ kf_lang() ] : 'manrope-latin-wght-normal.woff2';
+		$font  = isset( $fonts[ kf_lang() ] ) ? $fonts[ kf_lang() ] : 'readex-pro-latin-wght-normal.woff2';
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( KF_URI . '/assets/fonts/' . $font ) );
-		echo '<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">' . "\n";
-		echo '<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">' . "\n";
+		echo '<meta name="theme-color" content="#07070a" media="(prefers-color-scheme: dark)">' . "\n";
+		echo '<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">' . "\n";
 		if ( ! has_site_icon() ) {
 			printf( '<link rel="icon" type="image/png" sizes="32x32" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/icon-32.png' ) );
 			printf( '<link rel="icon" type="image/png" sizes="48x48" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/icon-48.png' ) );

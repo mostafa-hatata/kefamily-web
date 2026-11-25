@@ -31,7 +31,7 @@ kf_part(
 		</header>
 		<div class="which">
 			<?php foreach ( (array) kf_get( 'pages.companies.which' ) as $i => $w ) : $b = kf_brand( $w[0] ); ?>
-				<a class="which__row reveal" href="<?php echo esc_url( kf_company_url( $w[0] ) ); ?>" style="<?php echo esc_attr( kf_brand_style( $w[0] ) ); ?>;--d:<?php echo esc_attr( 0.05 * $i ); ?>s">
+				<a class="which__row spotlight reveal" data-spotlight href="<?php echo esc_url( kf_company_url( $w[0] ) ); ?>" style="<?php echo esc_attr( kf_brand_style( $w[0] ) ); ?>;--d:<?php echo esc_attr( 0.05 * $i ); ?>s">
 					<span class="which__q">“<?php echo esc_html( $w[1] ); ?>”</span>
 					<span class="which__a"><?php echo esc_html( $w[2] ); ?></span>
 					<span class="badge"><?php echo kf_icon( $w[0] ); // phpcs:ignore ?><span dir="ltr"><?php echo esc_html( $b['name'] ); ?></span></span>

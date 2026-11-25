@@ -1,3 +1,5 @@
+> **Note (v1.3):** the live theme went back to the v1.1 visual direction (dark-first glass, orbit hero, brand glows) with extra motion. This file documents the editorial direction tried in v1.2 and kept in git history (commit 14ff7ee) for reference.
+
 # KeFamily design system (v1.2)
 
 ## Direction

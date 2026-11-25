@@ -14,6 +14,8 @@ get_header();
 ?>
 <div style="<?php echo esc_attr( $style ); ?>">
 <section class="phero">
+	<div class="phero__glow" aria-hidden="true"></div>
+	<div class="hero__grid" aria-hidden="true"></div>
 	<div class="wrap phero__inner">
 		<?php kf_part( 'crumbs' ); ?>
 		<div class="phero__cols">
@@ -29,16 +31,17 @@ get_header();
 				<p class="lead reveal" style="--d:.15s"><?php echo esc_html( $b['desc'] ); ?></p>
 				<div class="hero__ctas reveal" style="--d:.2s">
 					<?php if ( ! empty( $b['url'] ) ) : ?>
-						<a class="btn" href="<?php echo esc_url( $b['url'] ); ?>" target="_blank" rel="noopener">
-							<span><?php kf_e( 'company.visit' ); ?> <span dir="ltr"><?php echo esc_html( $b['host'] ); ?></span></span><?php echo kf_icon( 'arrow-up' ); // phpcs:ignore ?>
+						<a class="btn btn--shimmer" href="<?php echo esc_url( $b['url'] ); ?>" target="_blank" rel="noopener" data-magnetic>
+							<span class="btn__shine" aria-hidden="true"></span><span class="btn__label"><?php kf_e( 'company.visit' ); ?> <span dir="ltr"><?php echo esc_html( $b['host'] ); ?></span></span><?php echo kf_icon( 'arrow-up' ); // phpcs:ignore ?>
 						</a>
 					<?php else : ?>
-						<a class="btn" href="<?php echo esc_url( kf_route_url( 'contact' ) ); ?>"><span><?php kf_e( 'company.talk' ); ?></span><?php echo kf_icon( 'arrow', 'flip-rtl' ); // phpcs:ignore ?></a>
+						<a class="btn btn--shimmer" href="<?php echo esc_url( kf_route_url( 'contact' ) ); ?>" data-magnetic><span class="btn__shine" aria-hidden="true"></span><span class="btn__label"><?php kf_e( 'company.talk' ); ?></span><?php echo kf_icon( 'arrow', 'flip-rtl' ); // phpcs:ignore ?></a>
 					<?php endif; ?>
-					<a class="btn btn--line" href="<?php echo esc_url( kf_whatsapp_url( $b['name'] ) ); ?>" target="_blank" rel="noopener"><?php echo kf_icon( 'whatsapp' ); // phpcs:ignore ?><span><?php kf_e( 'cta.btn2' ); ?></span></a>
+					<a class="btn btn--ghost" href="<?php echo esc_url( kf_whatsapp_url( $b['name'] ) ); ?>" target="_blank" rel="noopener"><?php echo kf_icon( 'whatsapp' ); // phpcs:ignore ?><span><?php kf_e( 'cta.btn2' ); ?></span></a>
 				</div>
 			</div>
-			<div class="phero__visual card card--<?php echo esc_attr( $slug ); ?> reveal" style="--d:.15s" aria-hidden="true">
+			<div class="phero__visual card card--<?php echo esc_attr( $slug ); ?> spotlight reveal" style="--d:.15s" data-spotlight aria-hidden="true">
+				<span class="beam"></span>
 				<div class="card__visual card__visual--tall"><?php kf_part( 'visual', array( 'slug' => $slug ) ); ?></div>
 			</div>
 		</div>
@@ -59,7 +62,7 @@ get_header();
 		</header>
 		<div class="features features--<?php echo (int) count( $b['features'] ); ?>">
 			<?php foreach ( $b['features'] as $i => $f ) : ?>
-				<div class="feature reveal" style="--d: <?php echo esc_attr( 0.05 * $i ); ?>s">
+				<div class="feature spotlight reveal" data-spotlight style="--d: <?php echo esc_attr( 0.05 * $i ); ?>s">
 					<span class="feature__n" dir="ltr">0<?php echo (int) $i + 1; ?></span>
 					<h3><?php echo esc_html( $f[0] ); ?></h3>
 					<p><?php echo esc_html( $f[1] ); ?></p>
@@ -88,7 +91,7 @@ if ( $sectors ) :
 		</header>
 		<div class="sector-cards">
 			<?php $i = 0; foreach ( $sectors as $sec => $line ) : ?>
-				<a class="sector-card reveal" href="<?php echo esc_url( kf_solution_url( $sec ) ); ?>" style="--d:<?php echo esc_attr( 0.05 * $i++ ); ?>s">
+				<a class="sector-card spotlight reveal" data-spotlight href="<?php echo esc_url( kf_solution_url( $sec ) ); ?>" style="--d:<?php echo esc_attr( 0.05 * $i++ ); ?>s">
 					<span class="value__icon" style="margin:0"><?php echo kf_sector_icon( $sec ); // phpcs:ignore ?></span>
 					<h3><?php echo esc_html( kf_get( 'sectors_pages.' . $sec . '.name' ) ); ?></h3>
 					<p><?php echo esc_html( $line ); ?></p>
@@ -108,7 +111,7 @@ if ( $sectors ) :
 		</header>
 		<div class="siblings">
 			<?php foreach ( array_keys( kf_brands_meta() ) as $s ) : if ( $s === $slug ) { continue; } $o = kf_brand( $s ); ?>
-				<a class="sibling reveal" href="<?php echo esc_url( kf_company_url( $s ) ); ?>" style="<?php echo esc_attr( kf_brand_style( $s ) ); ?>">
+				<a class="sibling spotlight reveal" data-spotlight href="<?php echo esc_url( kf_company_url( $s ) ); ?>" style="<?php echo esc_attr( kf_brand_style( $s ) ); ?>">
 					<span class="badge"><?php echo kf_icon( $s ); // phpcs:ignore ?><span dir="ltr"><?php echo esc_html( $o['name'] ); ?></span></span>
 					<h3><?php echo esc_html( $o['headline'] ); ?></h3>
 					<span class="link-arrow"><?php kf_e( 'companies.more' ); ?><?php echo kf_icon( 'arrow', 'flip-rtl' ); // phpcs:ignore ?></span>

@@ -25,7 +25,7 @@ kf_part(
 		</header>
 		<div class="features">
 			<?php foreach ( $p['types'] as $i => $t ) : ?>
-				<div class="feature reveal" style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
+				<div class="feature spotlight reveal" data-spotlight style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
 					<span class="value__icon" style="margin:0 0 8px"><?php echo kf_icon( $t[0] ); // phpcs:ignore ?></span>
 					<h3><?php echo esc_html( $t[1] ); ?></h3>
 					<p><?php echo esc_html( $t[2] ); ?></p>

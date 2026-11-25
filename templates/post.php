@@ -48,8 +48,8 @@ get_header();
 		<aside class="article__cta">
 			<p><?php kf_e( 'cta.sub' ); ?></p>
 			<div class="hero__ctas">
-				<a class="btn" href="<?php echo esc_url( kf_route_url( 'book' ) ); ?>"><?php echo kf_icon( 'calendar' ); // phpcs:ignore ?><span><?php kf_e( 'nav.book' ); ?></span></a>
-				<a class="btn btn--line" href="<?php echo esc_url( kf_whatsapp_url( get_the_title( $p ) ) ); ?>" target="_blank" rel="noopener"><?php echo kf_icon( 'whatsapp' ); // phpcs:ignore ?><span><?php kf_e( 'cta.btn2' ); ?></span></a>
+				<a class="btn btn--shimmer" href="<?php echo esc_url( kf_route_url( 'book' ) ); ?>"><span class="btn__shine" aria-hidden="true"></span><?php echo kf_icon( 'calendar' ); // phpcs:ignore ?><span class="btn__label"><?php kf_e( 'nav.book' ); ?></span></a>
+				<a class="btn btn--ghost" href="<?php echo esc_url( kf_whatsapp_url( get_the_title( $p ) ) ); ?>" target="_blank" rel="noopener"><?php echo kf_icon( 'whatsapp' ); // phpcs:ignore ?><span><?php kf_e( 'cta.btn2' ); ?></span></a>
 			</div>
 		</aside>
 	</div>
@@ -61,7 +61,7 @@ if ( $rel->have_posts() ) :
 	?>
 <section class="section">
 	<div class="wrap">
-		<header class="shead reveal"><h2 class="h2"><?php kf_e( 'blog_ui.related' ); ?></h2></header>
+		<header class="head reveal"><h2 class="h2"><?php kf_e( 'blog_ui.related' ); ?></h2></header>
 		<div class="posts">
 			<?php foreach ( $rel->posts as $i => $rp ) { kf_part( 'post-card', array( 'post' => $rp, 'i' => $i ) ); } ?>
 		</div>

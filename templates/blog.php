@@ -20,7 +20,6 @@ kf_part(
 	array(
 		'title'  => kf_get( 'pages.blog.title' ),
 		'sub'    => kf_get( 'pages.blog.sub' ),
-		'center' => false,
 	)
 );
 ?>
