@@ -51,7 +51,7 @@ kf_part(
 		</header>
 		<ol class="plan">
 			<?php foreach ( $s['plan'] as $i => $pl ) : $b = kf_brand( $pl[0] ); ?>
-				<li class="spotlight reveal" data-spotlight style="<?php echo esc_attr( kf_brand_style( $pl[0] ) ); ?>;--d:<?php echo esc_attr( 0.06 * $i ); ?>s">
+				<li class="spotlight reveal" style="<?php echo esc_attr( kf_brand_style( $pl[0] ) ); ?>;--d:<?php echo esc_attr( 0.06 * $i ); ?>s">
 					<a class="badge" href="<?php echo esc_url( kf_company_url( $pl[0] ) ); ?>"><?php echo kf_icon( $pl[0] ); // phpcs:ignore ?><span dir="ltr"><?php echo esc_html( $b['name'] ); ?></span></a>
 					<p><?php echo esc_html( $pl[1] ); ?></p>
 				</li>

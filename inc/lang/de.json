@@ -1,0 +1,1007 @@
+{
+ "meta": {
+  "title": "KeFamily — Muttergesellschaft von KePixel, KeMarq, KeChat und KeClinic",
+  "description": "KeFamily vereint KePixel, KeMarq, KeChat und KeClinic: Performance-Marketing, serverseitiges Tracking, WhatsApp-Automatisierung und Wachstum für Kliniken."
+ },
+ "nav": {
+  "home": "Start",
+  "companies": "Unternehmen",
+  "ecosystem": "So arbeiten wir",
+  "about": "Über uns",
+  "contact": "Kontakt",
+  "cta": "Projekt starten",
+  "menu": "Menü",
+  "close": "Schließen",
+  "skip": "Zum Inhalt springen",
+  "solutions": "Lösungen",
+  "more": "Mehr",
+  "careers": "Karriere",
+  "partners": "Partner",
+  "faq": "FAQ",
+  "theme": "Hell/Dunkel umschalten",
+  "privacy": "Datenschutz",
+  "terms": "Nutzungsbedingungen",
+  "breadcrumb": "Brotkrumen",
+  "book": "Termin buchen",
+  "blog": "Blog",
+  "language": "Sprache"
+ },
+ "hero": {
+  "sub": "KeFamily vereint KePixel, KeMarq, KeChat und KeClinic unter einem Dach — von der ersten Anzeige, die ein Kunde sieht, bis zum Kauf, zur Buchung und zum Wiederkommen.",
+  "cta1": "Unsere Unternehmen",
+  "cta2": "Per WhatsApp schreiben",
+  "scroll": "Scrollen"
+ },
+ "hero2": {
+  "title_a": "Eine Familie.",
+  "title_b": "Vier Wege,",
+  "rotate": [
+   "Kunden zu gewinnen.",
+   "jeden Schritt zu messen.",
+   "Chats in Umsatz zu verwandeln.",
+   "Ihre Klinik zu füllen."
+  ],
+  "cta_book": "30-Minuten-Termin buchen",
+  "index_t": "Die Familie"
+ },
+ "companies": {
+  "eyebrow": "Die Familie",
+  "title": "Vier Unternehmen. Ein Ziel: messbares Wachstum.",
+  "sub": "Jedes Unternehmen verantwortet einen Abschnitt der Customer Journey — und alle arbeiten mit denselben Daten.",
+  "visit": "Website besuchen",
+  "more": "Mehr erfahren",
+  "soon": "Bald",
+  "items": {
+   "kepixel": {
+    "tag": "Plattform für serverseitiges Tracking",
+    "headline": "Jede Kundenaktion wird zu einem sauberen Conversion-Signal.",
+    "desc": "Serverseitiges Tracking mit genaueren Daten für Werbeplattformen: Deduplizierung, Kundenidentität und Attribution — eingerichtet in unter einer Minute.",
+    "points": [
+     "100 % serverseitiges Tracking",
+     "Salla, Zid, Shopify, WordPress und mobile Apps",
+     "Sendet an Meta, Snapchat, TikTok, Google Ads und GA4"
+    ],
+    "long": "Browser und Werbeblocker verschlucken einen erheblichen Teil der Conversion-Daten, und Algorithmen lernen aus einem unvollständigen Bild. KePixel erfasst Ereignisse auf dem Server, bereinigt Duplikate, ordnet sie einem Kundenprofil zu und liefert sie an jede Werbeplattform im passenden Format.",
+    "features": [
+     [
+      "Serverseitiges Tracking",
+      "Daten, die nicht durch Browser-Einschränkungen oder Werbeblocker verloren gehen."
+     ],
+     [
+      "Deduplizierung",
+      "Jeder Kauf wird auf jeder Plattform genau einmal gezählt."
+     ],
+     [
+      "Identitätsauflösung",
+      "Ein Kundenprofil über Geräte und Kanäle hinweg."
+     ],
+     [
+      "Attributionspfad",
+      "Sehen Sie, welche Kampagne die Journey begonnen und welche sie abgeschlossen hat."
+     ],
+     [
+      "Umsatz und Bestellungen",
+      "Der Bestellwert geht an jede Plattform, um auf ROAS zu optimieren."
+     ],
+     [
+      "KI-Insights",
+      "Klare Hinweise, was sich verändert hat und was als Nächstes zu tun ist."
+     ]
+    ]
+   },
+   "kemarq": {
+    "tag": "Full-Service-Performance-Agentur",
+    "headline": "Ein Team, das Ihre Werbung steuert.",
+    "desc": "Kampagnenstrategie, Content, Design, Websites und Reporting — ein Team verantwortet das Ergebnis, ein Bericht zeigt, was passiert ist.",
+    "points": [
+     "Anzeigen auf Meta, Snapchat, TikTok, Google und X",
+     "Content, Foto, Video und Markenidentität",
+     "Websites, Landingpages und SEO"
+    ],
+    "long": "Statt Designer, Media Buyer, Entwickler und Analyst einzeln zu koordinieren, erhalten Sie Marketing als ein Paket. Kampagnen laufen auf präzisen Tracking-Daten, Kreative werden für jede Plattform gebaut, und alles wird in einem Bericht gemessen.",
+    "features": [
+     [
+      "Paid Ads",
+      "Meta, Snapchat, TikTok, Google und X mit täglicher Optimierung."
+     ],
+     [
+      "Social Media",
+      "Redaktionsplan, Veröffentlichung und Community-Management."
+     ],
+     [
+      "Content und Produktion",
+      "Fotos, Videos und Inhalte, die verkaufen."
+     ],
+     [
+      "Design und Identität",
+      "Ein konsistenter Markenauftritt und Werbemittel."
+     ],
+     [
+      "Websites und Landingpages",
+      "Schnelle Seiten, die Besucher zu Kunden machen."
+     ],
+     [
+      "Tracking, Reporting und SEO",
+      "Pixel, Conversions API, GA4 und Suchmaschinenoptimierung."
+     ]
+    ]
+   },
+   "kechat": {
+    "tag": "WhatsApp-Plattform für Unternehmen",
+    "headline": "Machen Sie WhatsApp zu Ihrem besten Vertriebskanal.",
+    "desc": "Massenkampagnen, ein gemeinsames Team-Postfach und automatische Termine, Erinnerungen und Follow-ups — auf Ihrer eigenen Nummer.",
+    "points": [
+     "Kampagnen nur mit Einwilligung",
+     "Gemeinsames Postfach und Teamrollen",
+     "Terminerinnerungen, Clinicea-Integration und API"
+    ],
+    "long": "Ihre Kunden sind bereits auf WhatsApp. KeChat macht Ihre Geschäftsnummer zu einem organisierten Vertriebskanal: Das Team antwortet aus einem Postfach, Kampagnen erreichen nur Kontakte mit Einwilligung, und Bestätigungen und Erinnerungen laufen von selbst.",
+    "features": [
+     [
+      "Massenkampagnen",
+      "Segmentierte Nachrichten mit sicherem Tageslimit."
+     ],
+     [
+      "Bildvorlagen",
+      "Wiederverwendbare Vorlagen mit Name, Datum und weiteren Feldern."
+     ],
+     [
+      "Gemeinsames Postfach",
+      "Das ganze Team antwortet von einer Nummer."
+     ],
+     [
+      "Automatisierungen",
+      "Terminbestätigungen, Erinnerungen, Absagen und Bewertungen."
+     ],
+     [
+      "Kontakte",
+      "Import aus Excel oder CSV mit Segmenten und Einwilligungsnachweisen."
+     ],
+     [
+      "API und Webhooks",
+      "Verbindung zu Ihren Systemen und Ihrem Buchungsdienst."
+     ]
+    ]
+   },
+   "keclinic": {
+    "tag": "Wachstumslösungen für Kliniken",
+    "headline": "Ein voller Terminkalender und Patienten, die wiederkommen.",
+    "desc": "Lösungen für Kliniken, die Werbung, Buchung und Besuch verbinden — mit Follow-up und dem Return jeder Kampagne.",
+    "points": [
+     "Automatische Buchungen und Erinnerungen",
+     "Patienten-Follow-up nach dem Besuch",
+     "Return jeder Kampagne"
+    ],
+    "long": "Kliniken verlieren Patienten zwischen Anzeige und Buchung und zwischen Buchung und Besuch. KeClinic bündelt das Know-how der Familie in einem System für Kliniken: Die Kampagne bringt den Patienten, die Buchung wird automatisch bestätigt und erinnert, und das Follow-up nach dem Besuch bringt ihn zurück.",
+    "features": [
+     [
+      "Von der Anzeige zur Buchung",
+      "Jede Buchung ist mit der Kampagne verknüpft, aus der sie kam."
+     ],
+     [
+      "Automatische Erinnerungen",
+      "Weniger No-Shows durch rechtzeitige Nachrichten."
+     ],
+     [
+      "Follow-up nach dem Besuch",
+      "Nachrichten nach dem Termin, Bewertungen und Folgebuchungen."
+     ],
+     [
+      "Return-Reporting",
+      "Kosten pro Patient und Return jedes Kanals."
+     ]
+    ]
+   }
+  }
+ },
+ "flow": {
+  "eyebrow": "So arbeiten wir",
+  "title": "Eine Customer Journey. Vier Unternehmen, die sich ergänzen.",
+  "sub": "Daten fließen ohne Verluste zwischen den Unternehmen, und jede Phase wird durch die vorherige besser.",
+  "hub": "KeFamily",
+  "steps": [
+   [
+    "kemarq",
+    "Kunden gewinnen",
+    "Kampagnen und Kreative auf echten Daten."
+   ],
+   [
+    "kepixel",
+    "Jeden Schritt messen",
+    "Saubere Conversion-Signale für Werbealgorithmen."
+   ],
+   [
+    "kechat",
+    "Chats in Umsatz verwandeln",
+    "Antworten, Erinnerungen und Kampagnen auf WhatsApp."
+   ],
+   [
+    "keclinic",
+    "Kunden zurückholen",
+    "Buchung, Besuch und Follow-up, die Loyalität aufbauen."
+   ]
+  ]
+ },
+ "stats": {
+  "eyebrow": "In Zahlen",
+  "items": [
+   [
+    4,
+    "",
+    "spezialisierte Unternehmen unter einem Dach"
+   ],
+   [
+    8,
+    "",
+    "Datenquellen, die KePixel unterstützt"
+   ],
+   [
+    7,
+    "",
+    "angebundene Werbe- und Analyseplattformen"
+   ],
+   [
+    1,
+    " Min",
+    "oder weniger für die Tracking-Einrichtung"
+   ]
+  ]
+ },
+ "manifesto": {
+  "eyebrow": "Unser Ansatz",
+  "text": "Wir verkaufen keine getrennten Werkzeuge. Wir bauen ein System, in dem jedes Unternehmen das vorherige ergänzt, keine Daten verloren gehen und jeder ausgegebene Riyal gemessen wird."
+ },
+ "values": {
+  "eyebrow": "Warum KeFamily",
+  "title": "Was uns unterscheidet",
+  "items": [
+   [
+    "data",
+    "Daten zuerst",
+    "Jede Entscheidung basiert auf präzisem serverseitigem Tracking, nicht auf Vermutungen."
+   ],
+   [
+    "link",
+    "Echte Integration",
+    "Unsere Unternehmen sind für die Zusammenarbeit gebaut, nicht aufeinandergestapelt."
+   ],
+   [
+    "chart",
+    "Messbare Ergebnisse",
+    "Ein Bericht: wie viel ausgegeben wurde und wie viel zurückkam."
+   ],
+   [
+    "team",
+    "Ein verantwortliches Team",
+    "Ein Partner verantwortet das Ergebnis — von der ersten Anzeige bis zur letzten Nachricht."
+   ]
+  ]
+ },
+ "sectors": {
+  "eyebrow": "Branchen",
+  "title": "Wir arbeiten mit Unternehmen, die von wiederkehrenden Kunden leben"
+ },
+ "faq": {
+  "eyebrow": "Häufige Fragen",
+  "title": "Alles, was Sie wissen müssen",
+  "items": [
+   [
+    "Was ist KeFamily?",
+    "KeFamily ist die Muttergesellschaft von KePixel, KeMarq, KeChat und KeClinic. Jedes Unternehmen ist auf einen Abschnitt der Customer Journey spezialisiert, und alle arbeiten mit denselben Daten."
+   ],
+   [
+    "Muss ich alle Unternehmen gleichzeitig nutzen?",
+    "Nein. Starten Sie mit dem, das Sie heute brauchen, und ergänzen Sie den Rest später — die Integration ist bereit, wenn Sie es sind."
+   ],
+   [
+    "In welchen Ländern sind Sie tätig?",
+    "Wir betreuen Kunden in Saudi-Arabien, Ägypten und den Golfstaaten."
+   ],
+   [
+    "Wie fange ich an?",
+    "Schreiben Sie uns per WhatsApp oder über das Formular, und wir empfehlen das passende Unternehmen oder Paket für Ihre Phase."
+   ]
+  ]
+ },
+ "cta": {
+  "title": "Bereit, die gesamte Customer Journey aufzubauen?",
+  "sub": "Erzählen Sie uns von Ihrem Projekt — wir zeigen Ihnen, wo Sie in der Familie anfangen.",
+  "btn1": "Kontakt aufnehmen",
+  "btn2": "Per WhatsApp schreiben"
+ },
+ "about": {
+  "eyebrow": "Über uns",
+  "title": "Wir haben eine Familie gegründet, weil Kunden nicht nur in einem Kanal leben.",
+  "sub": "KeFamily ist die Muttergesellschaft einer Gruppe, die aus der täglichen Arbeit an echten Kampagnen für echte Kunden entstanden ist.",
+  "story_t": "Unsere Geschichte",
+  "story": [
+   "Wir haben mit der Steuerung von Werbung begonnen und gesehen, dass ein erheblicher Teil der Conversion-Daten auf dem Weg zu den Werbeplattformen verloren ging. So entstand KePixel für serverseitiges Tracking.",
+   "Dann sahen wir, dass Kunden Unternehmen per WhatsApp schreiben, die Unterhaltungen aber über einzelne Telefone verstreut sind. So entstand KeChat.",
+   "Kliniken brauchen mehr als alle anderen eine Verbindung von Werbung, Buchung und Besuch — so entstand KeClinic. KeMarq führt all das zu einem einzigen Marketing-Service zusammen.",
+   "Heute vereint KeFamily diese Unternehmen unter einer Identität und einem Ziel: messbares Wachstum."
+  ],
+  "mission_t": "Unsere Mission",
+  "mission": "Jeden Riyal und jedes Pfund, das ins Marketing fließt, messbar zu machen — und jedes Interesse in einen wiederkehrenden Kunden zu verwandeln.",
+  "vision_t": "Unsere Vision",
+  "vision": "Der führende Technologie- und Marketingpartner für wachsende Unternehmen in der arabischen Welt zu sein.",
+  "markets_t": "Unsere Märkte",
+  "markets": [
+   "Saudi-Arabien",
+   "Ägypten",
+   "Golfstaaten"
+  ]
+ },
+ "contact": {
+  "eyebrow": "Kontakt",
+  "title": "Lassen Sie uns über Ihr Projekt sprechen",
+  "sub": "Füllen Sie das Formular aus — wir antworten innerhalb eines Werktags. Oder schreiben Sie direkt per WhatsApp.",
+  "name": "Name",
+  "company": "Unternehmen",
+  "email": "E-Mail",
+  "phone": "Telefon / WhatsApp",
+  "interest": "Was brauchen Sie?",
+  "interests": [
+   "Weiß nicht — helfen Sie mir bei der Wahl",
+   "KePixel — Tracking",
+   "KeMarq — Marketing und Werbung",
+   "KeChat — WhatsApp",
+   "KeClinic — Kliniken"
+  ],
+  "message": "Erzählen Sie von Ihrem Projekt",
+  "send": "Nachricht senden",
+  "sending": "Wird gesendet…",
+  "ok": "Danke! Ihre Nachricht ist angekommen, wir melden uns in Kürze.",
+  "err": "Senden fehlgeschlagen. Bitte erneut versuchen oder per WhatsApp schreiben.",
+  "required": "Bitte geben Sie Ihren Namen und mindestens eine Kontaktmöglichkeit an.",
+  "whatsapp_t": "WhatsApp",
+  "hours_t": "Geschäftszeiten",
+  "hours": "Sonntag – Donnerstag, 10:00 – 18:00 (Zeit Riad)",
+  "privacy": "Wir verwenden Ihre Daten nur, um auf Ihre Anfrage zu antworten."
+ },
+ "company": {
+  "back": "Alle Unternehmen",
+  "features": "Was es kann",
+  "family": "Arbeitet mit der Familie",
+  "visit": "Besuchen Sie",
+  "talk": "Mit uns sprechen"
+ },
+ "footer": {
+  "tagline": "Die Muttergesellschaft von KePixel, KeMarq, KeChat und KeClinic.",
+  "companies": "Unternehmen",
+  "pages": "Seiten",
+  "contact": "Kontakt",
+  "rights": "Alle Rechte vorbehalten."
+ },
+ "notfound": {
+  "title": "Diese Seite hat die Familie verlassen",
+  "sub": "Der Link existiert nicht oder wurde verschoben.",
+  "btn": "Zur Startseite"
+ },
+ "book": {
+  "eyebrow": "Kennenlernen",
+  "title": "Ein Erstgespräch buchen",
+  "sub": "Kostenlose 30 Minuten, um Ihr Geschäft zu verstehen und den nächsten Schritt zu empfehlen.",
+  "type_t": "Art des Termins",
+  "types": [
+   [
+    "meet",
+    "Videocall",
+    "Google Meet"
+   ],
+   [
+    "whatsapp",
+    "WhatsApp-Anruf",
+    "Sprache oder Video"
+   ]
+  ],
+  "day_t": "Tag wählen",
+  "time_t": "Uhrzeit wählen",
+  "tz": "Zeit Riad",
+  "pick_day": "Bitte zuerst einen Tag wählen",
+  "loading": "Zeiten werden geladen…",
+  "none": "An diesem Tag ist nichts frei — bitte einen anderen wählen.",
+  "details_t": "Ihre Angaben",
+  "topic": "Worüber möchten Sie sprechen?",
+  "service": "Unternehmen, das Sie interessiert",
+  "confirm": "Buchung bestätigen",
+  "sending": "Wird gebucht…",
+  "summary_t": "Ihre Buchung",
+  "duration": "30 Minuten",
+  "agenda_t": "Was wir besprechen",
+  "agenda": [
+   "Ihr Geschäft und Ihre Ziele kennenlernen",
+   "Ein kurzer Blick auf Ihre aktuellen Konten und Kanäle",
+   "Das passende Unternehmen oder den passenden Service und den nächsten Schritt empfehlen"
+  ],
+  "ok": "Gebucht! Die Einladung wurde an Ihre E-Mail gesendet.",
+  "err": "Die Buchung konnte nicht abgeschlossen werden. Bitte eine andere Zeit wählen oder per WhatsApp schreiben.",
+  "required": "Bitte Tag und Uhrzeit wählen und Name und E-Mail angeben.",
+  "days": [
+   "So",
+   "Mo",
+   "Di",
+   "Mi",
+   "Do",
+   "Fr",
+   "Sa"
+  ]
+ },
+ "wa": {
+  "title": "Chat mit KeFamily",
+  "sub": "Wir antworten während der Geschäftszeiten",
+  "greet": "Hallo 👋 Wie können wir helfen?",
+  "topics": [
+   "Ich möchte mehr verkaufen",
+   "Tracking — KePixel",
+   "Werbung und Marketing — KeMarq",
+   "WhatsApp — KeChat",
+   "Kliniken — KeClinic"
+  ],
+  "open": "WhatsApp öffnen",
+  "close": "Schließen",
+  "book": "Termin buchen",
+  "chat": "WhatsApp"
+ },
+ "blog_ui": {
+  "read": "Min. Lesezeit",
+  "all": "Alle",
+  "more": "Artikel lesen",
+  "related": "Weiterlesen",
+  "empty": "In dieser Sprache gibt es noch keine Artikel.",
+  "prev": "Neuere",
+  "next": "Ältere",
+  "latest": "Aus dem Blog",
+  "by": "KeFamily-Team"
+ },
+ "pages": {
+  "book": {
+   "crumb": "Termin buchen",
+   "seo_title": "Kostenloses Erstgespräch mit KeFamily buchen",
+   "seo_desc": "Wählen Sie Tag und Uhrzeit für ein kostenloses 30-minütiges Gespräch per Google Meet oder WhatsApp mit dem KeFamily-Team."
+  },
+  "blog": {
+   "crumb": "Blog",
+   "seo_title": "KeFamily Blog — Tracking, Werbung, WhatsApp und Kliniken",
+   "seo_desc": "Praxisnahe Artikel des KeFamily-Teams zu serverseitigem Tracking, WhatsApp-Kampagnen, Performance-Marketing und Klinikwachstum.",
+   "title": "Blog",
+   "sub": "Praxisnotizen aus der täglichen Arbeit an echten Kampagnen."
+  },
+  "companies": {
+   "crumb": "Unternehmen",
+   "seo_title": "KeFamily-Unternehmen — KePixel, KeMarq, KeChat und KeClinic",
+   "seo_desc": "Die vier Unternehmen von KeFamily: serverseitiges Tracking, Performance-Marketing, WhatsApp-Automatisierung und Klinikwachstum — und wann Sie welches brauchen.",
+   "eyebrow": "Die Familie",
+   "title": "Vier spezialisierte Unternehmen — jedes verantwortet einen Abschnitt der Customer Journey.",
+   "sub": "Starten Sie mit dem Unternehmen, das Ihr heutiges Problem löst, und ergänzen Sie die anderen bei Bedarf. Die Integration ist bereits da.",
+   "which_t": "Welches Unternehmen brauchen Sie?",
+   "which": [
+    [
+     "kemarq",
+     "Ich brauche neue Kunden und professionelle Werbung",
+     "KeMarq steuert Kampagnen, Content, Design und Ihre Website."
+    ],
+    [
+     "kepixel",
+     "Meine Anzeigen laufen, aber die Zahlen stimmen nicht",
+     "KePixel liefert saubere serverseitige Conversion-Daten an alle Plattformen."
+    ],
+    [
+     "kechat",
+     "Kunden schreiben per WhatsApp und Unterhaltungen gehen verloren",
+     "KeChat organisiert Chats, Kampagnen und Erinnerungen auf Ihrer Nummer."
+    ],
+    [
+     "keclinic",
+     "Ich habe eine Klinik und will mehr Buchungen und weniger No-Shows",
+     "KeClinic verbindet Werbung, Buchung, Besuch und Follow-up."
+    ]
+   ]
+  },
+  "solutions": {
+   "crumb": "Lösungen",
+   "seo_title": "Lösungen nach Branche — Shops, Kliniken, Schulen und mehr",
+   "seo_desc": "Marketing, Tracking und WhatsApp für jede Branche: Onlineshops, Kliniken, Schulen, Non-Profits, Dienstleister und Apps.",
+   "eyebrow": "Lösungen nach Branche",
+   "title": "Eine Familie — ein eigener Plan für jede Branche.",
+   "sub": "Jede Branche hat ihre eigene Customer Journey. Wählen Sie Ihre, um zu sehen, wie unsere Unternehmen für Sie zusammenarbeiten."
+  },
+  "how": {
+   "crumb": "So arbeiten wir",
+   "seo_title": "So arbeitet KeFamily — von der ersten Anzeige zum Stammkunden",
+   "seo_desc": "Schritt für Schritt, wie KeMarq, KePixel, KeChat und KeClinic verbunden sind: gewinnen, messen, konvertieren und Kunden zurückholen.",
+   "eyebrow": "So arbeiten wir",
+   "title": "Ein System, vier Phasen, keine verlorenen Daten.",
+   "sub": "Jede Phase gibt weiter, was sie gelernt hat, und die Ergebnisse wachsen mit jedem neuen Kunden.",
+   "stages": [
+    [
+     "kemarq",
+     "Gewinnen",
+     "Wir planen Kampagnen, produzieren Content für jede Plattform und bauen schnelle Landingpages, die auf Conversion ausgelegt sind.",
+     [
+      "Ein Werbeplan pro Plattform",
+      "Kreative, die laufend getestet werden",
+      "Schnelle Landingpages"
+     ]
+    ],
+    [
+     "kepixel",
+     "Messen",
+     "Jeder Besuch, jeder Warenkorb, jeder Kauf und jede Buchung wird auf dem Server erfasst und präzise an jede Plattform gesendet, damit Algorithmen aus echten Daten lernen.",
+     [
+      "Serverseitiges Tracking",
+      "Deduplizierung und Identität",
+      "Vollständiger Attributionspfad"
+     ]
+    ],
+    [
+     "kechat",
+     "Konvertieren",
+     "Aus Interesse wird ein Gespräch auf WhatsApp: schnelle Antworten des Teams, fertige Vorlagen und automatische Erinnerungen.",
+     [
+      "Gemeinsames Team-Postfach",
+      "Kampagnen nur mit Einwilligung",
+      "Automatisierte Buchungen und Erinnerungen"
+     ]
+    ],
+    [
+     "keclinic",
+     "Zurückholen",
+     "Nach dem Kauf oder Besuch beginnt das Follow-up: eine Bitte um Bewertung, eine Erinnerung an den nächsten Termin, ein Angebot zur richtigen Zeit.",
+     [
+      "Follow-up nach dem Besuch",
+      "Weniger No-Shows",
+      "Return nach Kanal"
+     ]
+    ]
+   ],
+   "data_t": "Welche Daten zwischen den Phasen fließen",
+   "data": [
+    "Woher der Kunde kam und über welche Kampagne",
+    "Was er auf der Website oder in der App getan hat",
+    "Seine Unterhaltungen und Buchungen",
+    "Der Wert des Kaufs oder der Buchung"
+   ],
+   "start_t": "Sie müssen nicht mit allem anfangen",
+   "start": "Die meisten Kunden starten mit einem Unternehmen und ergänzen die anderen später. Sagen Sie uns, wo Sie stehen, und wir zeigen Ihnen den besten Einstieg."
+  },
+  "about": {
+   "crumb": "Über uns",
+   "seo_title": "Über KeFamily — Muttergesellschaft von KePixel, KeMarq, KeChat und KeClinic",
+   "seo_desc": "KeFamily ist die Muttergesellschaft einer Gruppe, die aus der täglichen Arbeit an echten Kampagnen in Saudi-Arabien, Ägypten und am Golf entstanden ist."
+  },
+  "careers": {
+   "crumb": "Karriere",
+   "seo_title": "Karriere bei KeFamily — werden Sie Teil der Familie",
+   "seo_desc": "Wir suchen immer Marketer, Entwickler und Designer, die messbare Ergebnisse lieben. Senden Sie uns Ihr Profil, wir melden uns, wenn eine passende Rolle frei wird.",
+   "eyebrow": "Karriere",
+   "title": "Wir bauen Tools und Kampagnen mit messbaren Ergebnissen. Machen Sie mit.",
+   "sub": "Derzeit gibt es keine ausgeschriebenen Stellen, aber wir freuen uns immer über Talente. Senden Sie uns Ihr Profil, und wir melden uns, wenn eine passende Rolle frei wird.",
+   "how_t": "Wie wir arbeiten",
+   "how": [
+    [
+     "data",
+     "Erst messen, dann entscheiden",
+     "Jede Idee wird getestet, jedes Ergebnis in Zahlen gelesen."
+    ],
+    [
+     "team",
+     "Kleine Teams, volle Verantwortung",
+     "Jede Person verantwortet ihr Ergebnis von Anfang bis Ende."
+    ],
+    [
+     "link",
+     "Eine Familie",
+     "Arbeit über vier Unternehmen hinweg und Erfahrung mit jedem davon."
+    ],
+    [
+     "spark",
+     "Ständiges Lernen",
+     "Neue Tools, neue Plattformen und echte Aufgaben jede Woche."
+    ]
+   ],
+   "roles_t": "Bereiche, in denen wir einstellen",
+   "roles": [
+    "Paid Ads und Kampagnenmanagement",
+    "Content-Erstellung und Design",
+    "Web- und App-Entwicklung",
+    "Daten und Tracking",
+    "Kundenbetreuung und Vertrieb"
+   ],
+   "form_t": "Senden Sie Ihr Profil",
+   "form_sub": "Fügen Sie Ihrer Nachricht einen Link zu LinkedIn oder Ihrem Portfolio hinzu."
+  },
+  "partners": {
+   "crumb": "Partner",
+   "seo_title": "Partner von KeFamily werden — Agenturen, Entwickler und Plattformen",
+   "seo_desc": "Partnerschaften für Agenturen, Entwickler und Plattformen: serverseitiges Tracking, WhatsApp-Automatisierung und Performance-Marketing für Ihre Kunden.",
+   "eyebrow": "Partner",
+   "title": "Wir wachsen mit unseren Partnern.",
+   "sub": "Wenn Sie eine Agentur, ein Entwickler oder eine Plattform sind, können Ihre Kunden die Unternehmen der Familie nutzen — und wir profitieren von der Erfahrung Ihres Teams.",
+   "types_t": "Mit wem wir arbeiten",
+   "types": [
+    [
+     "team",
+     "Marketingagenturen",
+     "Bieten Sie Ihren Kunden serverseitiges Tracking und genaueres Reporting mit KePixel oder WhatsApp-Automatisierung mit KeChat."
+    ],
+    [
+     "link",
+     "Entwickler und Webdesigner",
+     "Verbinden Sie Kundenwebsites über Plugins und API mit KePixel und KeChat."
+    ],
+    [
+     "data",
+     "Plattformen und Systeme",
+     "Technische Integration Ihrer Plattform mit der Familie für gemeinsame Kunden."
+    ]
+   ],
+   "how_t": "So starten Sie",
+   "how": [
+    "Erzählen Sie uns von Ihrem Unternehmen",
+    "Wir einigen uns auf das passende Partnermodell",
+    "Wir starten mit dem ersten gemeinsamen Kunden"
+   ]
+  },
+  "faq": {
+   "crumb": "FAQ",
+   "seo_title": "FAQ — KeFamily, KePixel, KeMarq, KeChat, KeClinic",
+   "seo_desc": "Antworten auf häufige Fragen zu KeFamily, KePixel, KeMarq, KeChat und KeClinic: Einstieg, Integrationen, Länder und Datenschutz.",
+   "eyebrow": "Häufige Fragen",
+   "title": "Alles, was Sie vor dem Start wissen müssen",
+   "sub": "Keine Antwort gefunden? Schreiben Sie uns per WhatsApp.",
+   "more": [
+    [
+     "Was unterscheidet KeFamily von seinen Unternehmen?",
+     "KeFamily ist die Muttergesellschaft. Die vier Unternehmen erbringen die Leistungen, und KeFamily sorgt dafür, dass sie als ein System zusammenarbeiten."
+    ],
+    [
+     "Ersetzt KePixel Google Analytics?",
+     "Nein. KePixel sendet genauere Daten an Google Analytics, Google Ads, Meta, Snapchat, TikTok und weitere, sodass deren Berichte und Kampagnen präziser werden."
+    ],
+    [
+     "Brauche ich für KeChat eine neue Nummer?",
+     "Nein. Sie verbinden Ihre bestehende Nummer per QR-Code, und Ihr Team antwortet aus einem gemeinsamen Postfach."
+    ],
+    [
+     "Arbeiten Sie mit kleinen Unternehmen?",
+     "Ja. Sie können mit einem Unternehmen im passenden Umfang beginnen und mitwachsen."
+    ],
+    [
+     "Sind meine Daten sicher?",
+     "Wir verwenden Ihre Daten nur für die angefragte Leistung und verkaufen sie niemals. Details finden Sie in der Datenschutzerklärung."
+    ],
+    [
+     "Wie lange dauert der Start?",
+     "Die Einrichtung des KePixel-Trackings dauert weniger als eine Minute; für andere Leistungen legen wir den Zeitplan im ersten Gespräch fest."
+    ]
+   ]
+  },
+  "contact": {
+   "crumb": "Kontakt",
+   "seo_title": "KeFamily kontaktieren — WhatsApp und Kontaktformular",
+   "seo_desc": "Schreiben Sie KeFamily per WhatsApp oder über das Formular — innerhalb eines Werktags empfehlen wir das passende Unternehmen oder Paket für Ihre Phase."
+  },
+  "privacy": {
+   "crumb": "Datenschutz",
+   "seo_title": "Datenschutzerklärung",
+   "seo_desc": "Wie KeFamily Daten von Website-Besuchern und Kontaktformularen erhebt, nutzt und schützt.",
+   "title": "Datenschutzerklärung",
+   "updated": "Zuletzt aktualisiert: 25. November 2026",
+   "sections": [
+    [
+     "Wer wir sind",
+     "Diese Website gehört KeFamily, der Muttergesellschaft von KePixel, KeMarq, KeChat und KeClinic. Jedes Unternehmen hat eine eigene Website und eigene Datenschutzbestimmungen für seine Leistungen."
+    ],
+    [
+     "Welche Daten wir erheben",
+     "Wenn Sie das Kontaktformular nutzen, speichern wir Ihre Angaben: Name, Unternehmen, E-Mail, Telefon, Interesse und Nachricht. Diese Website verwendet keine Werbe-Cookies."
+    ],
+    [
+     "Wie wir sie nutzen",
+     "Nur um auf Ihre Anfrage zu antworten und die angefragte Leistung zu erbringen. Wir verkaufen Ihre Daten nicht und geben sie nicht für Marketingzwecke weiter."
+    ],
+    [
+     "Speicherdauer",
+     "Wir speichern Kontaktdaten so lange, wie es für die Antwort oder die Geschäftsbeziehung nötig ist, und Sie können jederzeit die Löschung verlangen."
+    ],
+    [
+     "Ihre Rechte",
+     "Sie können Auskunft, Berichtigung oder Löschung Ihrer Daten per WhatsApp oder über das Formular verlangen."
+    ],
+    [
+     "Änderungen",
+     "Wir können diese Erklärung aktualisieren; das Datum der letzten Aktualisierung steht oben auf der Seite."
+    ]
+   ]
+  },
+  "terms": {
+   "crumb": "Nutzungsbedingungen",
+   "seo_title": "Nutzungsbedingungen",
+   "seo_desc": "Die Bedingungen für die Nutzung der KeFamily-Website.",
+   "title": "Nutzungsbedingungen",
+   "updated": "Zuletzt aktualisiert: 25. November 2026",
+   "sections": [
+    [
+     "Nutzung der Website",
+     "Diese Website stellt KeFamily und seine Unternehmen vor. Mit der Nutzung akzeptieren Sie diese Bedingungen."
+    ],
+    [
+     "Leistungen",
+     "Jedes Unternehmen der Familie erbringt seine Leistungen nach eigenen Bedingungen und Verträgen; die Inhalte dieser Website dienen der Information und sind kein bindendes Angebot."
+    ],
+    [
+     "Geistiges Eigentum",
+     "Namen, Logos und Inhalte dieser Website gehören KeFamily oder seinen Unternehmen und dürfen ohne Genehmigung nicht verwendet werden."
+    ],
+    [
+     "Externe Links",
+     "Die Website kann auf Websites unserer Unternehmen oder andere Ressourcen mit eigenen Bedingungen verlinken."
+    ],
+    [
+     "Kontakt",
+     "Bei Fragen zu diesen Bedingungen kontaktieren Sie uns per WhatsApp oder über das Formular."
+    ]
+   ]
+  }
+ },
+ "sectors_pages": {
+  "ecommerce": {
+   "name": "E-Commerce",
+   "seo_title": "E-Commerce — Tracking, Werbung und WhatsApp für Onlineshops",
+   "seo_desc": "Für Shops auf Salla, Zid, Shopify und WooCommerce: Performance-Anzeigen, serverseitiges Kauf-Tracking und Warenkorb-Rückgewinnung per WhatsApp.",
+   "title": "Ein Shop, der mit demselben Budget mehr verkauft.",
+   "intro": "Onlineshops verlieren Umsatz durch unvollständige Conversion-Daten, abgebrochene Warenkörbe und unbeantwortete Nachrichten. Wir verbinden die Anzeige mit dem Kauf — und mit dem, was danach kommt.",
+   "pains": [
+    "Werbeplattformen sehen nicht alle Käufe",
+    "Viele Warenkörbe werden ohne Erinnerung abgebrochen",
+    "WhatsApp-Anfragen warten zu lange auf Antwort"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Performance-Kampagnen auf Meta, Snapchat, TikTok und Google rund um Ihre besten Produkte."
+    ],
+    [
+     "kepixel",
+     "Jeder Kauf und jeder Warenkorb geht serverseitig mit dem Bestellwert an die Plattformen — von Salla, Zid, Shopify und WooCommerce."
+    ],
+    [
+     "kechat",
+     "Warenkorb-Erinnerungen, Bestellbestätigungen und Kampagnen an Kunden mit Einwilligung auf WhatsApp."
+    ]
+   ],
+   "outcomes": [
+    "Werbezahlen näher an Ihrem echten Umsatz",
+    "Algorithmen lernen von echten Käufern",
+    "Zurückgewonnene Verkäufe aus abgebrochenen Warenkörben"
+   ],
+   "faq": [
+    [
+     "Unterstützen Sie Salla und Zid?",
+     "Ja. KePixel unterstützt Salla, Zid, Shopify, WordPress/WooCommerce und individuelle Shops."
+    ],
+    [
+     "Brauche ich einen Entwickler?",
+     "In der Regel nicht. Die Einrichtung erfolgt über fertige Vorlagen für jede Plattform."
+    ]
+   ]
+  },
+  "clinics": {
+   "name": "Kliniken und medizinische Zentren",
+   "seo_title": "Lösungen für Kliniken — mehr Buchungen, weniger No-Shows",
+   "seo_desc": "Für Kliniken und medizinische Zentren: Kampagnen, die Patienten bringen, WhatsApp-Erinnerungen gegen No-Shows und Follow-up nach dem Besuch mit Kosten pro Patient.",
+   "title": "Mehr Buchungen, weniger No-Shows, Patienten, die wiederkommen.",
+   "intro": "Eine Klinik verliert Patienten zweimal: zwischen Anzeige und Buchung und zwischen Buchung und Besuch. Wir verbinden alle drei Phasen zu einer Journey.",
+   "pains": [
+    "Unklar, welche Kampagne den Patienten gebracht hat",
+    "Hohe No-Show-Rate",
+    "Kein Follow-up nach dem Besuch"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Kampagnen für Ihre gefragtesten Leistungen mit Inhalten, die Vertrauen schaffen."
+    ],
+    [
+     "kepixel",
+     "Jede Buchung wird ihrer Kampagne zugeordnet und als Conversion an die Plattformen gesendet."
+    ],
+    [
+     "kechat",
+     "Buchungsbestätigungen, Erinnerungen vor dem Besuch und Bewertungsanfragen auf WhatsApp, mit Clinicea-Integration."
+    ],
+    [
+     "keclinic",
+     "Patienten-Follow-up, Folgebuchungen und Berichte zu den Kosten pro Patient je Kanal."
+    ]
+   ],
+   "outcomes": [
+    "Klare Kosten pro Patient",
+    "Mehr wahrgenommene Termine",
+    "Wiederkehrende Besuche derselben Patienten"
+   ],
+   "faq": [
+    [
+     "Arbeiten Sie mit Clinicea?",
+     "Ja. KeChat ist für Buchungen und Erinnerungen mit Clinicea integriert."
+    ],
+    [
+     "Können Buchungen als Werbe-Conversions gezählt werden?",
+     "Ja. KePixel sendet jede Buchung als Conversion-Ereignis an alle Werbeplattformen."
+    ]
+   ]
+  },
+  "education": {
+   "name": "Schulen und Bildung",
+   "seo_title": "Lösungen für Schulen — mehr Anmeldungen",
+   "seo_desc": "Für Schulen und Bildungszentren: Kampagnen zur Anmeldesaison, Tracking von Anmeldeanfragen und Elternkommunikation per WhatsApp.",
+   "title": "Volle Klassen und Eltern, die in Kontakt bleiben.",
+   "intro": "Schulanmeldungen sind saisonal und umkämpft. Wir machen jeden Riyal der Anmeldesaison messbar und verwandeln Anfragen in Besuche und Anmeldungen.",
+   "pains": [
+    "Budgets der Anmeldesaison werden ungenau gemessen",
+    "Viele verstreute Elternanfragen",
+    "Schwer zu erkennen, welche Kampagne eine Anmeldung brachte"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Kampagnen zur Anmeldesaison auf Meta, Snapchat und Google nach Standort oder Schulstufe."
+    ],
+    [
+     "kepixel",
+     "Anmeldeanfragen und Besuchstermine werden auf jeder Plattform als Conversions getrackt."
+    ],
+    [
+     "kechat",
+     "Schnelle Antworten an Eltern, Besuchserinnerungen und Kampagnen an angemeldete Familien."
+    ]
+   ],
+   "outcomes": [
+    "Klare Kosten pro Anmeldeanfrage",
+    "Schnellere Antworten an Eltern",
+    "Datenbasierte Budgetentscheidungen"
+   ],
+   "faq": [
+    [
+     "Arbeiten Sie mit mehreren Standorten?",
+     "Ja. Kampagnen und Berichte werden nach Standort oder Schule getrennt."
+    ],
+    [
+     "Können wir Eltern in großer Zahl anschreiben?",
+     "Ja, über KeChat-Kampagnen nur an Nummern mit Einwilligung."
+    ]
+   ]
+  },
+  "nonprofits": {
+   "name": "Non-Profits und Spendenplattformen",
+   "seo_title": "Non-Profits und Spendenplattformen — messbare Spenden",
+   "seo_desc": "Für gemeinnützige Organisationen und Spendenplattformen: Spendenkampagnen, serverseitiges Spenden-Tracking und Spenderkommunikation per WhatsApp.",
+   "title": "Jede Spende gemessen, jedem Spender gedankt.",
+   "intro": "Spenden kommen in Saisons und kurzen Kampagnen, und präzise Messung macht den Unterschied. Wir helfen Ihnen zu sehen, was funktioniert, und langfristige Beziehungen zu Spendern aufzubauen.",
+   "pains": [
+    "Spenden erscheinen nicht in Werbeberichten",
+    "Saisonale Kampagnen enden ohne klare Ergebnisse",
+    "Wenig Kontakt zu Spendern nach der Spende"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Saisonale und projektbezogene Kampagnen mit starkem Content für jede Plattform."
+    ],
+    [
+     "kepixel",
+     "Jede Spende wird serverseitig mit ihrem Betrag gesendet, auch von individuellen Plattformen."
+    ],
+    [
+     "kechat",
+     "Dankesnachrichten, Projekt-Updates und Erinnerungen an kommende Kampagnen an Spender mit Einwilligung."
+    ]
+   ],
+   "outcomes": [
+    "Genauere Spendenberichte pro Kampagne",
+    "Budget fließt in die besten Kampagnen",
+    "Spender kommen in der nächsten Saison wieder"
+   ],
+   "faq": [
+    [
+     "Unterstützen Sie individuelle Spendenplattformen?",
+     "Ja. KePixel unterstützt individuelle Shops und Plattformen über Web und API."
+    ],
+    [
+     "Kann der Spendenbetrag gemessen werden?",
+     "Ja — der Betrag jeder Spende geht zur Optimierung an die Werbeplattformen."
+    ]
+   ]
+  },
+  "services": {
+   "name": "Dienstleistungen und Termine",
+   "seo_title": "Lösungen für Dienstleister — mehr Leads, schnellere Antworten",
+   "seo_desc": "Für Dienstleistungsunternehmen: Lead-Kampagnen, serverseitiges Tracking von Formularen und Terminen und schnelles Follow-up per WhatsApp.",
+   "title": "Mehr Leads und eine Antwort, die nie zu spät kommt.",
+   "intro": "Bei Dienstleistungen gewinnt meist, wer zuerst antwortet. Wir bringen Leads, messen sie und sorgen dafür, dass keiner kalt wird.",
+   "pains": [
+    "Lead-Qualität schwankt stark",
+    "Langsame Antworten auf neue Anfragen",
+    "Unklar, welche Kampagne echte Kunden bringt"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Lead-Kampagnen und Landingpages, gebaut für Ihre Leistung."
+    ],
+    [
+     "kepixel",
+     "Formulare und Termine werden getrackt und an die Plattformen gesendet, um die Lead-Qualität zu verbessern."
+    ],
+    [
+     "kechat",
+     "Sofortige Antworten, organisiertes Follow-up und Terminerinnerungen aus einem Postfach."
+    ]
+   ],
+   "outcomes": [
+    "Leads mit höherer Qualität",
+    "Kürzere Antwortzeiten",
+    "Klarer Return jeder Kampagne"
+   ],
+   "faq": [
+    [
+     "Können Sie meine Website-Formulare anbinden?",
+     "Ja. KePixel erfasst Formulare auf WordPress und individuellen Websites."
+    ],
+    [
+     "Können mehrere Mitarbeitende antworten?",
+     "Ja. KeChat bietet ein gemeinsames Postfach und Rollen für Ihr Team."
+    ]
+   ]
+  },
+  "apps": {
+   "name": "Mobile Apps",
+   "seo_title": "Lösungen für Apps — messbare Installationen und Engagement",
+   "seo_desc": "Für mobile Apps: Installationskampagnen, serverseitiges Tracking von In-App-Ereignissen und Reaktivierung von Nutzern per WhatsApp.",
+   "title": "Installationen, die zu aktiven Nutzern werden.",
+   "intro": "Die Installation ist erst der Anfang. Wir messen, was in der App passiert, und holen Nutzer zurück, die aufgehört haben.",
+   "pains": [
+    "Unklar, welche Kampagne aktive Nutzer bringt",
+    "In-App-Ereignisse kommen nicht vollständig bei den Plattformen an",
+    "Nutzer installieren und verschwinden"
+   ],
+   "plan": [
+    [
+     "kemarq",
+     "Installations- und Reaktivierungskampagnen auf Meta, Snapchat, TikTok und Google."
+    ],
+    [
+     "kepixel",
+     "App-Ereignisse werden serverseitig an Werbe- und Analyseplattformen gesendet."
+    ],
+    [
+     "kechat",
+     "Willkommens- und Reaktivierungsnachrichten an Nutzer mit Einwilligung."
+    ]
+   ],
+   "outcomes": [
+    "Klare Kosten pro aktivem Nutzer",
+    "Algorithmen zielen auf die wertvollsten Nutzer",
+    "Zurückgewonnene inaktive Nutzer"
+   ],
+   "faq": [
+    [
+     "Unterstützt KePixel mobile Apps?",
+     "Ja. KePixel unterstützt Quellen aus mobilen Apps und API."
+    ],
+    [
+     "Arbeiten Sie mit unseren Attributions-Tools?",
+     "Ja. Wir arbeiten mit den Attributions-Tools zusammen, die Sie bereits nutzen."
+    ]
+   ]
+  }
+ },
+ "sector_ui": {
+  "pains_t": "Das Problem",
+  "plan_t": "Wie die Familie für Sie arbeitet",
+  "outcomes_t": "Was Sie bemerken werden",
+  "faq_t": "Fragen zur Branche",
+  "others_t": "Weitere Branchen",
+  "more": "Mehr erfahren"
+ }
+}

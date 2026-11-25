@@ -28,7 +28,7 @@ kf_part(
 <section class="section">
 	<div class="wrap stages">
 		<?php foreach ( $p['stages'] as $i => $st ) : $b = kf_brand( $st[0] ); ?>
-			<article class="stage spotlight reveal" data-spotlight style="<?php echo esc_attr( kf_brand_style( $st[0] ) ); ?>">
+			<article class="stage reveal" style="<?php echo esc_attr( kf_brand_style( $st[0] ) ); ?>">
 				<span class="stage__n" dir="ltr">0<?php echo (int) $i + 1; ?></span>
 				<div>
 					<a class="badge" href="<?php echo esc_url( kf_company_url( $st[0] ) ); ?>"><?php echo kf_icon( $st[0] ); // phpcs:ignore ?><span dir="ltr"><?php echo esc_html( $b['name'] ); ?></span></a>

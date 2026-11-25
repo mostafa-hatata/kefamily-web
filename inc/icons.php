@@ -35,6 +35,9 @@ function kf_icon( $name, $class = '' ) {
 		'briefcase' => '<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18"/>',
 		'phone'     => '<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
 		'shield'    => '<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12l2.2 2.2 4.3-4.4"/>',
+		'calendar'  => '<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/>',
+		'video'     => '<rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 10.5l5-3v9l-5-3"/>',
+		'mail'      => '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>',
 		/* Company glyphs */
 		'kepixel'   => '<rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="currentColor"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="currentColor"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/>',
 		'kemarq'    => '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><path d="M18 6l2.5-2.5"/>',
@@ -48,26 +51,42 @@ function kf_icon( $name, $class = '' ) {
 }
 
 /**
- * KeFamily mark: four family tiles in the family colour (white on dark,
- * ink on light — via currentColor) around a heart that holds the four
- * brand colours.
+ * KeFamily mark (official artwork). Two files, swapped by colour mode in CSS.
  */
 function kf_logo_mark( $size = 32 ) {
-	return '<svg class="kf-mark" width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
-		. '<rect x="3" y="3" width="15" height="15" rx="5" fill="currentColor"/>'
-		. '<rect x="22" y="3" width="15" height="15" rx="7.5" fill="currentColor" opacity=".88"/>'
-		. '<rect x="3" y="22" width="15" height="15" rx="7.5" fill="currentColor" opacity=".88"/>'
-		. '<rect x="22" y="22" width="15" height="15" rx="5" fill="currentColor"/>'
-		. '<circle cx="20" cy="20" r="7.4" style="fill:var(--solid,#07070a)"/>'
-		. '<path d="M20 20V15A5 5 0 0 1 25 20Z" fill="#2367F2"/>'
-		. '<path d="M20 20H25A5 5 0 0 1 20 25Z" fill="#25D366"/>'
-		. '<path d="M20 20V25A5 5 0 0 1 15 20Z" fill="#FACC15"/>'
-		. '<path d="M20 20H15A5 5 0 0 1 20 15Z" fill="#8247DB"/>'
-		. '</svg>';
+	$u = KF_URI . '/assets/img/';
+	return sprintf(
+		'<span class="kf-mark" aria-hidden="true"><img class="on-light" src="%1$smark-on-light.webp" width="%2$d" height="%2$d" alt="" decoding="async"><img class="on-dark" src="%1$smark-on-dark.webp" width="%2$d" height="%2$d" alt="" decoding="async"></span>',
+		esc_url( $u ),
+		(int) $size
+	);
 }
 
-function kf_logo() {
-	return '<span class="kf-logo">' . kf_logo_mark( 30 ) . '<span class="kf-logo__word" dir="ltr">Ke<b>Family</b></span></span>';
+/** Full KeFamily logo (official artwork, light/dark versions). */
+function kf_logo( $height = 28 ) {
+	$u = KF_URI . '/assets/img/';
+	$w = (int) round( $height * 464 / 80 );
+	return sprintf(
+		'<span class="kf-logo"><img class="on-light" src="%1$skefamily-logo-on-light.webp" width="%2$d" height="%3$d" alt="KeFamily" decoding="async"><img class="on-dark" src="%1$skefamily-logo-on-dark.webp" width="%2$d" height="%3$d" alt="KeFamily" decoding="async"></span>',
+		esc_url( $u ),
+		$w,
+		(int) $height
+	);
+}
+
+/** Brand logo image when an official file exists (KeClinic), else ''. */
+function kf_brand_logo( $slug, $height = 40 ) {
+	if ( 'keclinic' !== $slug ) {
+		return '';
+	}
+	$u = KF_URI . '/assets/img/';
+	$w = (int) round( $height * 413 / 96 );
+	return sprintf(
+		'<span class="kf-logo"><img class="on-light" src="%1$skeclinic-logo-on-light.webp" width="%2$d" height="%3$d" alt="KeClinic" decoding="async"><img class="on-dark" src="%1$skeclinic-logo-on-dark.webp" width="%2$d" height="%3$d" alt="KeClinic" decoding="async"></span>',
+		esc_url( $u ),
+		$w,
+		(int) $height
+	);
 }
 
 /** Icon per sector. */

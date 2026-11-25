@@ -23,7 +23,8 @@ add_action(
 add_filter(
 	'language_attributes',
 	function () {
-		return kf_is_rtl() ? 'lang="ar" dir="rtl"' : 'lang="en" dir="ltr"';
+		$l = kf_langs()[ kf_lang() ];
+		return sprintf( 'lang="%s" dir="%s"', esc_attr( $l['hreflang'] ), esc_attr( $l['dir'] ) );
 	}
 );
 
@@ -41,7 +42,13 @@ add_action(
 			array(
 				'ajax'    => admin_url( 'admin-ajax.php' ),
 				'lang'    => kf_lang(),
-				'rotate'  => kf_get( 'hero.rotate' ),
+				'rotate'  => kf_get( 'hero2.rotate' ),
+				'book'    => array(
+					'endpoint' => kf_booking_endpoint(),
+					'nonce'    => wp_create_nonce( 'kf_book' ),
+					'i18n'     => kf_get( 'book' ),
+					'wa'       => kf_whatsapp_url(),
+				),
 				'rotateStyles' => array_map( 'kf_brand_style', array( 'kemarq', 'kepixel', 'kechat', 'keclinic' ) ),
 				'i18n'    => array(
 					'sending'  => kf_get( 'contact.sending' ),
@@ -67,12 +74,15 @@ add_action(
 add_action(
 	'wp_head',
 	function () {
-		$font = kf_is_rtl() ? 'readex-pro-arabic-wght-normal.woff2' : 'readex-pro-latin-wght-normal.woff2';
+		$fonts = array( 'ar' => 'readex-pro-arabic-wght-normal.woff2', 'ru' => 'manrope-cyrillic-wght-normal.woff2' );
+		$font  = isset( $fonts[ kf_lang() ] ) ? $fonts[ kf_lang() ] : 'manrope-latin-wght-normal.woff2';
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( KF_URI . '/assets/fonts/' . $font ) );
-		echo '<meta name="theme-color" content="#07070a" media="(prefers-color-scheme: dark)">' . "\n";
-		echo '<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">' . "\n";
+		echo '<meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)">' . "\n";
+		echo '<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">' . "\n";
 		if ( ! has_site_icon() ) {
-			printf( '<link rel="icon" type="image/svg+xml" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/favicon.svg' ) );
+			printf( '<link rel="icon" type="image/png" sizes="32x32" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/icon-32.png' ) );
+			printf( '<link rel="icon" type="image/png" sizes="48x48" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/icon-48.png' ) );
+			printf( '<link rel="apple-touch-icon" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/icon-180.png' ) );
 		}
 	},
 	1

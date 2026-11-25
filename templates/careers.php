@@ -25,7 +25,7 @@ kf_part(
 		</header>
 		<div class="values">
 			<?php foreach ( $p['how'] as $i => $v ) : ?>
-				<div class="value spotlight reveal" data-spotlight style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
+				<div class="value reveal" style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
 					<span class="value__icon"><?php echo kf_icon( $v[0] ); // phpcs:ignore ?></span>
 					<h3><?php echo esc_html( $v[1] ); ?></h3>
 					<p><?php echo esc_html( $v[2] ); ?></p>

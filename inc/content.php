@@ -510,5 +510,10 @@ function kf_content() {
 	);
 
 	$content = array_replace_recursive( $content, kf_content_pages() );
+	foreach ( array( 'ru', 'de' ) as $code ) {
+		$file = KF_DIR . '/inc/lang/' . $code . '.json';
+		$data = is_readable( $file ) ? json_decode( (string) file_get_contents( $file ), true ) : null; // phpcs:ignore WordPress.WP.AlternativeFunctions
+		$content[ $code ] = is_array( $data ) ? $data : array();
+	}
 	return $content;
 }

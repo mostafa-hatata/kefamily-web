@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.2.0 — 2026-11-25
+
+Design (editorial direction, see docs/DESIGN.md)
+- Rebuilt the visual language: white-led Swiss editorial layout, hairlines,
+  numbered sections, monumental type (Manrope; Readex Pro for Arabic).
+- Removed decorative noise: particles, aurora, marquee, meteors, retro grid,
+  spotlight/beam borders, blur reveals, shimmer buttons.
+- Home: monumental hero with brand-coloured rotator (height reserved, no
+  layout shift), numbered company index, ecosystem diagram, facts row,
+  inverted manifesto, industries list, values, latest articles, FAQ,
+  monumental inverted CTA.
+- Official logo artwork (KeFamily light/dark, KeClinic light/dark, app
+  icons); favicons + apple-touch icon; new OG image.
+- Light is the default mode; dark is a remembered user choice.
+
+Languages
+- English (primary, at /), Arabic (/ar/), Russian (/ru/), German (/de/).
+  Full RU/DE copy in inc/lang/*.json. Language switcher in nav, mobile menu
+  and footer. Old ?lang=en URLs 301 to the new paths.
+- hreflang en/ar/ru/de + x-default, og:locale per language, html lang/dir.
+
+New
+- /book/: meeting booking like kemarq.net — Google Meet or WhatsApp call,
+  next 10 working days, live free slots (Riyadh time), confirmation through
+  the same Google Apps Script endpoint (Customizer setting); every booking
+  is also saved as a Lead in wp-admin + emailed.
+- Floating dock on every page: "Book a meeting" + WhatsApp chat panel with
+  greeting and topic shortcuts that open WhatsApp with a prefilled message.
+- Blog: /blog/ (topic filters, pagination), /blog/{slug}/ articles with
+  reading time, translations, related posts, BlogPosting schema; posts get
+  a language/slug/topic box in the editor. 3 starter articles × 4 languages.
+- Sitemap: 23 routes × 4 languages + every article (104 URLs).
+
 ## 1.1.0 — 2026-11-25
 
 Brand & identity

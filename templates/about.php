@@ -48,12 +48,12 @@ kf_part(
 
 <section class="section section--tight">
 	<div class="wrap mv">
-		<div class="mv__card spotlight reveal" data-spotlight>
-			<span class="beam" aria-hidden="true"></span>
+		<div class="mv__card reveal">
+			
 			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.mission_t' ); ?></h2>
 			<p><?php kf_e( 'about.mission' ); ?></p>
 		</div>
-		<div class="mv__card spotlight reveal" data-spotlight style="--d:.08s">
+		<div class="mv__card reveal" style="--d:.08s">
 			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.vision_t' ); ?></h2>
 			<p><?php kf_e( 'about.vision' ); ?></p>
 		</div>
@@ -81,7 +81,7 @@ kf_part(
 		</header>
 		<div class="values">
 			<?php foreach ( (array) kf_get( 'values.items' ) as $i => $v ) : ?>
-				<div class="value spotlight reveal" data-spotlight style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
+				<div class="value reveal" style="--d: <?php echo esc_attr( 0.06 * $i ); ?>s">
 					<span class="value__icon"><?php echo kf_icon( $v[0] ); // phpcs:ignore ?></span>
 					<h3><?php echo esc_html( $v[1] ); ?></h3>
 					<p><?php echo esc_html( $v[2] ); ?></p>

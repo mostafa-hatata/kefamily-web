@@ -12,7 +12,7 @@ $i       = 0;
 ?>
 <div class="sector-cards">
 	<?php foreach ( kf_sector_slugs() as $slug ) : if ( $slug === $exclude ) { continue; } $s = kf_get( 'sectors_pages.' . $slug ); ?>
-		<a class="sector-card spotlight reveal" data-spotlight href="<?php echo esc_url( kf_solution_url( $slug ) ); ?>" style="--d:<?php echo esc_attr( 0.05 * $i++ ); ?>s">
+		<a class="sector-card reveal" href="<?php echo esc_url( kf_solution_url( $slug ) ); ?>" style="--d:<?php echo esc_attr( 0.05 * $i++ ); ?>s">
 			<span class="value__icon" style="margin:0"><?php echo kf_sector_icon( $slug ); // phpcs:ignore ?></span>
 			<<?php echo esc_html( $hl ); ?>><?php echo esc_html( $s['name'] ); ?></<?php echo esc_html( $hl ); ?>>
 			<p><?php echo esc_html( $s['title'] ); ?></p>

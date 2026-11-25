@@ -9,8 +9,6 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 <section class="phero">
-	<div class="phero__glow" aria-hidden="true"></div>
-	<div class="hero__grid" aria-hidden="true"></div>
 	<div class="wrap">
 		<?php kf_part( 'crumbs' ); ?>
 		<div class="contact" style="margin-top:20px">

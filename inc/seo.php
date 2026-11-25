@@ -63,58 +63,90 @@ add_filter(
 	20
 );
 
-/** Clean (language-less) absolute URL of the current page. */
-function kf_current_base_url() {
-	$k = kf_route();
-	if ( $k ) {
-		return 'home' === $k ? home_url( '/' ) : kf_route_url( $k, 'ar' );
+function kf_json_ld( $data ) {
+	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+}
+
+/** Canonical URL of the current page (current language). */
+function kf_canonical_url() {
+	$alts = kf_alt_urls();
+	if ( isset( $alts[ kf_lang() ] ) ) {
+		return $alts[ kf_lang() ];
 	}
 	$path = wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH );
 	return home_url( $path ? $path : '/' );
 }
 
-function kf_json_ld( $data ) {
-	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
-}
-
 add_action(
 	'wp_head',
 	function () {
-		$base = kf_current_base_url();
-		$ar   = $base;
-		$en   = add_query_arg( 'lang', 'en', $base );
-
-		if ( ! is_404() ) {
-			echo '<link rel="alternate" hreflang="ar" href="' . esc_url( $ar ) . '">' . "\n";
-			echo '<link rel="alternate" hreflang="en" href="' . esc_url( $en ) . '">' . "\n";
-			echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $ar ) . '">' . "\n";
+		$langs = kf_langs();
+		$alts  = is_404() ? array() : kf_alt_urls();
+		foreach ( $alts as $code => $url ) {
+			echo '<link rel="alternate" hreflang="' . esc_attr( $langs[ $code ]['hreflang'] ) . '" href="' . esc_url( $url ) . '">' . "\n";
+		}
+		if ( isset( $alts['en'] ) ) {
+			echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $alts['en'] ) . '">' . "\n";
 		}
 
 		if ( kf_has_seo_plugin() ) {
 			return;
 		}
 		list( $title, $desc ) = kf_page_meta();
-		$canonical = kf_is_rtl() ? $ar : $en;
+		$canonical = kf_canonical_url();
+		$post      = 'post' === kf_route() ? kf_current_post() : null;
 		$og_image  = KF_URI . '/assets/img/og.png';
+		if ( $post && has_post_thumbnail( $post ) ) {
+			$og_image = get_the_post_thumbnail_url( $post, 'large' );
+		}
 
 		echo '<meta name="description" content="' . esc_attr( $desc ) . '">' . "\n";
 		if ( ! is_404() ) {
 			echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
 		}
-		echo '<meta property="og:type" content="website">' . "\n";
+		echo '<meta property="og:type" content="' . ( $post ? 'article' : 'website' ) . '">' . "\n";
 		echo '<meta property="og:site_name" content="KeFamily">' . "\n";
-		echo '<meta property="og:locale" content="' . ( kf_is_rtl() ? 'ar_SA' : 'en_US' ) . '">' . "\n";
-		echo '<meta property="og:locale:alternate" content="' . ( kf_is_rtl() ? 'en_US' : 'ar_SA' ) . '">' . "\n";
+		echo '<meta property="og:locale" content="' . esc_attr( $langs[ kf_lang() ]['locale'] ) . '">' . "\n";
+		foreach ( array_keys( $alts ) as $code ) {
+			if ( $code !== kf_lang() ) {
+				echo '<meta property="og:locale:alternate" content="' . esc_attr( $langs[ $code ]['locale'] ) . '">' . "\n";
+			}
+		}
 		echo '<meta property="og:title" content="' . esc_attr( $title ) . '">' . "\n";
 		echo '<meta property="og:description" content="' . esc_attr( $desc ) . '">' . "\n";
 		echo '<meta property="og:url" content="' . esc_url( $canonical ) . '">' . "\n";
 		echo '<meta property="og:image" content="' . esc_url( $og_image ) . '">' . "\n";
-		echo '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' . "\n";
+		if ( ! $post || ! has_post_thumbnail( $post ) ) {
+			echo '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' . "\n";
+		}
 		echo '<meta property="og:image:alt" content="KeFamily — KePixel, KeMarq, KeChat, KeClinic">' . "\n";
+		if ( $post ) {
+			echo '<meta property="article:published_time" content="' . esc_attr( get_the_date( 'c', $post ) ) . '">' . "\n";
+			echo '<meta property="article:modified_time" content="' . esc_attr( get_the_modified_date( 'c', $post ) ) . '">' . "\n";
+		}
 		echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
 		echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '">' . "\n";
 		echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '">' . "\n";
 		echo '<meta name="twitter:image" content="' . esc_url( $og_image ) . '">' . "\n";
+
+		if ( $post ) {
+			kf_json_ld(
+				array(
+					'@context'         => 'https://schema.org',
+					'@type'            => 'BlogPosting',
+					'headline'         => get_the_title( $post ),
+					'description'      => $desc,
+					'inLanguage'       => $langs[ kf_lang() ]['hreflang'],
+					'datePublished'    => get_the_date( 'c', $post ),
+					'dateModified'     => get_the_modified_date( 'c', $post ),
+					'mainEntityOfPage' => $canonical,
+					'image'            => $og_image,
+					'wordCount'        => count( preg_split( '/\s+/u', wp_strip_all_tags( $post->post_content ) ) ),
+					'author'           => array( '@type' => 'Organization', 'name' => 'KeFamily', '@id' => home_url( '/#organization' ) ),
+					'publisher'        => array( '@id' => home_url( '/#organization' ) ),
+				)
+			);
+		}
 
 		/* Organization (+ sub-organizations) on every page. */
 		$subs = array();
@@ -138,14 +170,14 @@ add_action(
 			'@id'             => home_url( '/#organization' ),
 			'name'            => 'KeFamily',
 			'url'             => home_url( '/' ),
-			'logo'            => KF_URI . '/assets/img/logo-mark.png',
+			'logo'            => KF_URI . '/assets/img/icon-512.png',
 			'description'     => kf_get( 'meta.description' ),
 			'subOrganization' => $subs,
 			'contactPoint'    => array(
 				'@type'             => 'ContactPoint',
 				'contactType'       => 'sales',
 				'telephone'         => kf_whatsapp_display(),
-				'availableLanguage' => array( 'Arabic', 'English' ),
+				'availableLanguage' => array( 'English', 'Arabic', 'Russian', 'German' ),
 			),
 			'areaServed'      => array( 'SA', 'EG', 'AE', 'KW', 'QA', 'BH', 'OM' ),
 		);
@@ -162,7 +194,7 @@ add_action(
 					'@id'        => home_url( '/#website' ),
 					'url'        => home_url( '/' ),
 					'name'       => 'KeFamily',
-					'inLanguage' => array( 'ar', 'en' ),
+					'inLanguage' => array( 'en', 'ar', 'ru', 'de' ),
 					'publisher'  => array( '@id' => home_url( '/#organization' ) ),
 				)
 			);
@@ -251,7 +283,7 @@ add_filter(
 add_filter(
 	'wp_sitemaps_post_types',
 	function ( $types ) {
-		unset( $types['kf_lead'] );
+		unset( $types['kf_lead'], $types['post'] );
 		return $types;
 	}
 );
@@ -289,10 +321,18 @@ add_action(
 					$this->object_type = 'kefamily';
 				}
 				public function get_url_list( $page_num, $object_subtype = '' ) {
-					$list = array( array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' ) ) ) );
+					$list = array();
 					foreach ( kf_routes() as $route ) {
-						$list[] = array( 'loc' => home_url( '/' . $route[0] ) );
-						$list[] = array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' . $route[0] ) ) );
+						foreach ( array_keys( kf_langs() ) as $lang ) {
+							$list[] = array( 'loc' => kf_url( $route[0], $lang ) );
+						}
+					}
+					$posts = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 500, 'meta_key' => '_kf_lang' ) ); // phpcs:ignore
+					foreach ( $posts as $p ) {
+						$list[] = array(
+							'loc'     => kf_post_url( $p ),
+							'lastmod' => get_post_modified_time( 'c', true, $p ),
+						);
 					}
 					return $list;
 				}
