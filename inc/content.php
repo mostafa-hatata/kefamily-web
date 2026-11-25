@@ -270,7 +270,7 @@ function kf_content() {
 		'en' => array(
 			'meta'      => array(
 				'title'       => 'KeFamily — The parent company of KePixel, KeMarq, KeChat & KeClinic',
-				'description' => 'KeFamily brings four marketing and technology companies under one roof: performance marketing, server-side tracking, WhatsApp automation and clinic growth — from the first ad to the returning customer.',
+				'description' => 'KeFamily unites KePixel, KeMarq, KeChat & KeClinic: performance marketing, server-side tracking, WhatsApp automation and clinic growth.',
 			),
 			'nav'       => array(
 				'home'      => 'Home',

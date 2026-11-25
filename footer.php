@@ -25,7 +25,7 @@ $ig = get_theme_mod( 'kf_instagram', '' );
 		</div>
 
 		<div>
-			<h3><?php kf_e( 'footer.companies' ); ?></h3>
+			<h2 class="footer__h"><?php kf_e( 'footer.companies' ); ?></h2>
 			<ul>
 				<?php foreach ( array_keys( kf_brands_meta() ) as $slug ) : $b = kf_brand( $slug ); ?>
 					<li><a href="<?php echo esc_url( kf_company_url( $slug ) ); ?>" style="--c: <?php echo esc_attr( $b['color'] ); ?>"><i class="dot"></i><?php echo esc_html( $b['name'] ); ?></a></li>
@@ -34,7 +34,7 @@ $ig = get_theme_mod( 'kf_instagram', '' );
 		</div>
 
 		<div>
-			<h3><?php kf_e( 'footer.pages' ); ?></h3>
+			<h2 class="footer__h"><?php kf_e( 'footer.pages' ); ?></h2>
 			<ul>
 				<li><a href="<?php echo esc_url( kf_url() ); ?>"><?php kf_e( 'nav.home' ); ?></a></li>
 				<li><a href="<?php echo esc_url( kf_url( 'about/' ) ); ?>"><?php kf_e( 'nav.about' ); ?></a></li>
@@ -44,7 +44,7 @@ $ig = get_theme_mod( 'kf_instagram', '' );
 		</div>
 
 		<div>
-			<h3><?php kf_e( 'footer.contact' ); ?></h3>
+			<h2 class="footer__h"><?php kf_e( 'footer.contact' ); ?></h2>
 			<ul>
 				<li><a href="<?php echo esc_url( kf_whatsapp_url() ); ?>" target="_blank" rel="noopener" dir="ltr"><?php echo esc_html( kf_whatsapp_display() ); ?></a></li>
 				<li class="muted"><?php kf_e( 'contact.hours' ); ?></li>

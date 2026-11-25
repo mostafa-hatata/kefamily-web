@@ -42,10 +42,10 @@ function kf_page_meta() {
 		$title = $b['name'] . ' — ' . rtrim( $b['headline'], '.。' ) . ' | KeFamily';
 		$desc  = $b['desc'];
 	} elseif ( is_page( 'about' ) ) {
-		$title = kf_get( 'about.eyebrow' ) . ' | KeFamily';
+		$title = kf_is_rtl() ? 'من نحن | KeFamily — الشركة الأم لـ KePixel وKeMarq وKeChat وKeClinic' : 'About KeFamily — parent of KePixel, KeMarq, KeChat & KeClinic';
 		$desc  = kf_get( 'about.sub' );
 	} elseif ( is_page( 'contact' ) ) {
-		$title = kf_get( 'contact.title' ) . ' | KeFamily';
+		$title = kf_get( 'contact.title' ) . ' — ' . ( kf_is_rtl() ? 'واتساب ونموذج تواصل' : 'WhatsApp & contact form' ) . ' | KeFamily';
 		$desc  = kf_get( 'contact.sub' );
 	} elseif ( is_404() ) {
 		$title = kf_get( 'notfound.title' ) . ' | KeFamily';
@@ -132,6 +132,115 @@ add_action(
 			'areaServed'      => array( 'SA', 'EG', 'AE', 'KW', 'QA', 'BH', 'OM' ),
 		);
 		echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+
+		$crumbs = array( array( kf_get( 'nav.home' ), kf_url() ) );
+		$slug   = get_query_var( 'kf_company' );
+		if ( $slug && ( $cb = kf_brand( $slug ) ) ) {
+			$crumbs[] = array( kf_get( 'nav.companies' ), kf_url( '#companies' ) );
+			$crumbs[] = array( $cb['name'], kf_company_url( $slug ) );
+		} elseif ( is_page( 'about' ) ) {
+			$crumbs[] = array( kf_get( 'nav.about' ), kf_url( 'about/' ) );
+		} elseif ( is_page( 'contact' ) ) {
+			$crumbs[] = array( kf_get( 'nav.contact' ), kf_url( 'contact/' ) );
+		}
+		if ( count( $crumbs ) > 1 ) {
+			$items = array();
+			foreach ( $crumbs as $i => $c ) {
+				$items[] = array(
+					'@type'    => 'ListItem',
+					'position' => $i + 1,
+					'name'     => $c[0],
+					'item'     => $c[1],
+				);
+			}
+			echo '<script type="application/ld+json">' . wp_json_encode(
+				array(
+					'@context'        => 'https://schema.org',
+					'@type'           => 'BreadcrumbList',
+					'itemListElement' => $items,
+				),
+				JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+			) . '</script>' . "\n";
+		}
 	},
 	5
+);
+
+/* ---------- XML sitemap ---------- */
+
+/* No author archives in the sitemap (they leak usernames and add thin pages). */
+add_filter(
+	'wp_sitemaps_add_provider',
+	function ( $provider, $name ) {
+		return 'users' === $name ? false : $provider;
+	},
+	10,
+	2
+);
+
+/* Private leads must never be listed. */
+add_filter(
+	'wp_sitemaps_post_types',
+	function ( $types ) {
+		unset( $types['kf_lead'] );
+		return $types;
+	}
+);
+
+/**
+ * Adds the theme-routed pages (company pages) and every English version.
+ */
+add_action(
+	'init',
+	function () {
+		if ( ! class_exists( 'WP_Sitemaps_Provider' ) ) {
+			return;
+		}
+		if ( ! class_exists( 'KF_Sitemap_Provider' ) ) {
+			class KF_Sitemap_Provider extends WP_Sitemaps_Provider {
+				public function __construct() {
+					$this->name        = 'kefamily';
+					$this->object_type = 'kefamily';
+				}
+				public function get_url_list( $page_num, $object_subtype = '' ) {
+					$paths = array( '', 'about/', 'contact/' );
+					foreach ( array_keys( kf_brands_meta() ) as $slug ) {
+						$paths[] = 'companies/' . $slug . '/';
+					}
+					$list = array();
+					foreach ( $paths as $p ) {
+						if ( '' !== $p ) { // Arabic home is already in the core pages sitemap.
+							$list[] = array( 'loc' => home_url( '/' . $p ) );
+						}
+						$list[] = array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' . $p ) ) );
+					}
+					return $list;
+				}
+				public function get_max_num_pages( $object_subtype = '' ) {
+					return 1;
+				}
+			}
+		}
+		wp_register_sitemap_provider( 'kefamily', new KF_Sitemap_Provider() );
+	}
+);
+
+/* Keep the About/Contact placeholder pages out of the default pages sitemap (already listed above with both languages). */
+add_filter(
+	'wp_sitemaps_posts_query_args',
+	function ( $args, $post_type ) {
+		if ( 'page' === $post_type ) {
+			$ids = array();
+			foreach ( array( 'about', 'contact' ) as $slug ) {
+				$p = get_page_by_path( $slug );
+				if ( $p ) {
+					$ids[] = $p->ID;
+				}
+			}
+			$args['post__not_in'] = isset( $args['post__not_in'] ) ? array_merge( (array) $args['post__not_in'], $ids ) : $ids;
+		}
+		return $args;
+	},
+	10,
+	2
 );

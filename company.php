@@ -49,8 +49,9 @@ get_header();
 	<div class="wrap">
 		<header class="head reveal">
 			<span class="eyebrow"><?php kf_e( 'company.features' ); ?></span>
+			<h2 class="h2"><?php echo esc_html( $b['name'] . ' — ' . $b['tag'] ); ?></h2>
 		</header>
-		<div class="features">
+		<div class="features features--<?php echo (int) count( $b['features'] ); ?>">
 			<?php foreach ( $b['features'] as $i => $f ) : ?>
 				<div class="feature spotlight reveal" data-spotlight style="--d: <?php echo esc_attr( 0.05 * $i ); ?>s">
 					<span class="feature__n" dir="ltr">0<?php echo (int) $i + 1; ?></span>
@@ -65,7 +66,7 @@ get_header();
 <section class="section section--tight">
 	<div class="wrap">
 		<header class="head reveal">
-			<span class="eyebrow"><?php kf_e( 'company.family' ); ?></span>
+			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'company.family' ); ?></h2>
 		</header>
 		<div class="siblings">
 			<?php foreach ( array_keys( kf_brands_meta() ) as $s ) : if ( $s === $slug ) { continue; } $o = kf_brand( $s ); ?>

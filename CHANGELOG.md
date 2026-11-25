@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.2 — 2026-11-25
+
+Technical SEO pass:
+- XML sitemap: added the four company pages and every English URL
+  (custom `kefamily` provider); removed author archives and private leads.
+- Fixed heading hierarchy (no h1→h3 jumps) on company and contact pages;
+  footer column titles are now h2.
+- BreadcrumbList schema on inner pages; shorter, keyword-led titles for
+  About/Contact; English home description trimmed to 135 characters.
+- KeClinic features laid out 2×2.
+
 ## 1.0.1 — 2026-11-25
 
 - Deploy pipeline live: GitHub Actions → SSH → staging, with server-side
