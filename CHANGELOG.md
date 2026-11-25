@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 — 2026-11-25
+
+- Deploy pipeline live: GitHub Actions → SSH → staging, with server-side
+  backups and post-deploy smoke tests.
+
 ## 1.0.0 — 2026-11-25
 
 First release of the KeFamily website theme (staging).
