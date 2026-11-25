@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: PHP syntax check
+        run: |
+          set -e
+          find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: JS syntax check
+        run: node --check assets/js/main.js
+
+      - name: Build theme zip
+        run: |
+          mkdir -p dist/kefamily
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'dist' --exclude 'docs' ./ dist/kefamily/
+          cd dist && zip -qr kefamily.zip kefamily
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kefamily-theme-${{ github.sha }}
+          path: dist/kefamily.zip
+          retention-days: 90
