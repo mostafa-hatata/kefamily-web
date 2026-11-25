@@ -286,7 +286,7 @@ html[dir="rtl"] .marquee__track { animation-name: marq-rtl; }
 /* ---------- Sections ---------- */
 .section { position: relative; padding: clamp(80px, 11vw, 140px) 0; }
 .section--tight { padding: clamp(50px, 7vw, 90px) 0; }
-.section--alt { background: var(--bg-2); border-block: 1px solid var(--line); }
+.section--alt { background: transparent; }
 
 /* ---------- Spotlight + border beam ---------- */
 .spotlight { position: relative; isolation: isolate; }
@@ -855,7 +855,7 @@ html[dir="rtl"] .book__card-t { letter-spacing: 0; font-size: .88rem; }
 /* Floating orbit parallax */
 .hero__visual { transform: translate3d(0, var(--py, 0px), 0); }
 /* Section dividers sweep */
-.section--alt::after { content: ""; position: absolute; inset-inline: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, #8247DB, #2367F2, #25D366, #FACC15, transparent); background-size: 200% 100%; animation: bsweep 6s linear infinite; opacity: .7; }
+.kf-unused::after { content: ""; position: absolute; inset-inline: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, #8247DB, #2367F2, #25D366, #FACC15, transparent); background-size: 200% 100%; animation: bsweep 6s linear infinite; opacity: .7; }
 @keyframes bsweep { from { background-position: 200% 0; } to { background-position: 0 0; } }
 
 @media (max-width: 1140px) {
@@ -999,3 +999,45 @@ html[dir="rtl"] .link-arrow:hover .icon { animation-name: nudge-rtl; }
 /* Tilt must win over the finished reveal transform. */
 html.js .reveal.in[data-tilt], html.js [data-tilt]:not(.reveal) { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0)); }
 html.js .reveal.in[data-tilt]:hover { --ty: -4px; transition: transform .12s linear, opacity .9s, filter .9s; }
+
+/* ==========================================================================
+   v1.4.2 — alternating section bands (clear change from one section to the next)
+   ========================================================================== */
+:root { --band: #11111a; --band-line: rgba(255, 255, 255, .09); --band-glow: rgba(130, 71, 219, .10); }
+:root[data-theme="light"] { --band: #eceef4; --band-line: rgba(12, 12, 24, .08); --band-glow: rgba(35, 103, 242, .07); }
+main > section:nth-of-type(even):not(.hero):not(.cta), main > div > section:nth-of-type(even):not(.cta) {
+	background:
+		radial-gradient(80% 60% at 50% 0%, var(--band-glow), transparent 70%),
+		var(--band);
+	border-block: 1px solid var(--band-line);
+	position: relative;
+}
+main > section:nth-of-type(even):not(.hero):not(.cta)::after, main > div > section:nth-of-type(even):not(.cta)::after {
+	content: ""; position: absolute; inset-inline: 0; top: -1px; height: 1px; pointer-events: none;
+	background: linear-gradient(90deg, transparent, #8247DB, #2367F2, #25D366, #FACC15, transparent);
+	background-size: 200% 100%; animation: bsweep 6s linear infinite; opacity: .8;
+}
+/* Cards on a band sit on the base colour so they still stand out. */
+main > section:nth-of-type(even) .card, main > section:nth-of-type(even) .value, main > section:nth-of-type(even) .feature,
+main > section:nth-of-type(even) .post-card, main > section:nth-of-type(even) .sector-card, main > section:nth-of-type(even) .step,
+main > section:nth-of-type(even) .faq__item, main > section:nth-of-type(even) .panel, main > section:nth-of-type(even) .stats,
+main > section:nth-of-type(even) .sibling, main > section:nth-of-type(even) .stage, main > section:nth-of-type(even) .which__row,
+main > section:nth-of-type(even) .sectors a, main > section:nth-of-type(even) .form, main > section:nth-of-type(even) .book__form { background: var(--bg); }
+:root[data-theme="light"] main > section:nth-of-type(even) .card, :root[data-theme="light"] main > section:nth-of-type(even) .value,
+:root[data-theme="light"] main > section:nth-of-type(even) .feature, :root[data-theme="light"] main > section:nth-of-type(even) .post-card,
+:root[data-theme="light"] main > section:nth-of-type(even) .sector-card, :root[data-theme="light"] main > section:nth-of-type(even) .step,
+:root[data-theme="light"] main > section:nth-of-type(even) .faq__item, :root[data-theme="light"] main > section:nth-of-type(even) .panel,
+:root[data-theme="light"] main > section:nth-of-type(even) .stats, :root[data-theme="light"] main > section:nth-of-type(even) .sibling,
+:root[data-theme="light"] main > section:nth-of-type(even) .stage, :root[data-theme="light"] main > section:nth-of-type(even) .which__row,
+:root[data-theme="light"] main > section:nth-of-type(even) .sectors a { background: #ffffff; }
+/* The manifesto is its own band. */
+.manifesto { background: linear-gradient(180deg, var(--bg), var(--band) 30%, var(--band) 70%, var(--bg)); }
+@media (max-width: 860px) {
+	.nav.is-scrolled .nav__inner, .nav.is-open .nav__inner { background: color-mix(in srgb, var(--bg) 94%, transparent); }
+}
+@media (max-width: 600px) {
+	.manifesto { height: auto; }
+	.manifesto__sticky { position: static; height: auto; padding: 72px 0; }
+	.manifesto__text .w { opacity: 1 !important; }
+	.tag { padding-block: 6px; }
+}

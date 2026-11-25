@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.2 — 2026-11-25
+
+- Alternating section bands: every second section sits on a distinct
+  surface (dark #11111a / light #eceef4) with hairline borders and a moving
+  brand line on top; cards on a band use the base colour so they still
+  stand out. The manifesto fades into its own band.
+- Mobile: nav bar turns almost opaque when scrolled (text no longer shows
+  through), manifesto is a normal block on phones (no long empty sticky
+  area), larger tag tap targets.
+- Live on kefamily.online (domain connected in hPanel, sitemap submitted).
+
 ## 1.4.0 — 2026-11-25
 
 Blog

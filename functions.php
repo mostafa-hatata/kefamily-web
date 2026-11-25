@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'KF_VERSION', '1.4.1' );
+define( 'KF_VERSION', '1.4.2' );
 define( 'KF_DIR', get_template_directory() );
 define( 'KF_URI', get_template_directory_uri() );
 
