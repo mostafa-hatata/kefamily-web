@@ -113,9 +113,11 @@ function kf_activate() {
 add_action(
 	'init',
 	function () {
-		if ( get_option( 'kf_rewrite_ver' ) !== KF_VERSION ) {
+		$host = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+		$key  = KF_VERSION . '@' . $host;
+		if ( get_option( 'kf_rewrite_ver' ) !== $key ) {
 			flush_rewrite_rules( false );
-			update_option( 'kf_rewrite_ver', KF_VERSION );
+			update_option( 'kf_rewrite_ver', $key );
 		}
 	},
 	99
