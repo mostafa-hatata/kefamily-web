@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.5 — 2026-11-25
+- Root cause of "the site still looks old/all black": pages were sent with `Cache-Control: max-age=604800`, so browsers kept old HTML (and old CSS links) for 7 days after a deploy. Pages now send `max-age=0, s-maxage=600, must-revalidate`; versioned CSS/JS stay long-cached.
+- Note: Hostinger CDN is active on kefamily.online and has its own cache — after a deploy flush it from hPanel → Performance → CDN → Flush cache (the Cache Manager purge does not clear it).
+
 ## 1.4.4 — 2026-11-25
 - Section bands now flip theme: on the dark site every other section is light, on the light site every other section is dark, so moving between sections is obvious (was a barely visible #11111a tint).
 - Cards, text, borders and logo variants inside a band follow the band's theme via scoped tokens.

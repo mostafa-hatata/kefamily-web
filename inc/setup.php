@@ -132,3 +132,18 @@ add_filter(
 		return $classes;
 	}
 );
+
+/**
+ * HTML must never sit in a visitor's browser for days: the host was sending
+ * "max-age=604800" on pages, so returning visitors kept an old design after a
+ * deploy. Browsers now revalidate every page; the server/CDN may still keep a
+ * copy for 10 minutes (s-maxage) so traffic bursts don't reach MySQL.
+ * CSS/JS are versioned by file time, so they stay long-cached safely.
+ */
+add_action( 'send_headers', function () {
+	if ( is_admin() || wp_doing_ajax() || is_user_logged_in() || headers_sent() ) {
+		return;
+	}
+	header( 'Cache-Control: public, max-age=0, s-maxage=600, must-revalidate', true );
+	header_remove( 'Expires' );
+}, 99 );
