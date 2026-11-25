@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.4 — 2026-11-25
+- Section bands now flip theme: on the dark site every other section is light, on the light site every other section is dark, so moving between sections is obvious (was a barely visible #11111a tint).
+- Cards, text, borders and logo variants inside a band follow the band's theme via scoped tokens.
+- Brand gradient line at the top of each band is 2px.
+
 ## 1.4.3 — 2026-11-25
 
 Live review of kefamily.online (192 URLs crawled from the browser):

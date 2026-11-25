@@ -1001,35 +1001,63 @@ html.js .reveal.in[data-tilt], html.js [data-tilt]:not(.reveal) { transform: per
 html.js .reveal.in[data-tilt]:hover { --ty: -4px; transition: transform .12s linear, opacity .9s, filter .9s; }
 
 /* ==========================================================================
-   v1.4.2 — alternating section bands (clear change from one section to the next)
+   v1.4.4 — inverted section bands: every other section flips theme
+   (dark site → light bands, light site → dark bands) so the change from
+   one section to the next is obvious.
    ========================================================================== */
-:root { --band: #11111a; --band-line: rgba(255, 255, 255, .09); --band-glow: rgba(130, 71, 219, .10); }
-:root[data-theme="light"] { --band: #eceef4; --band-line: rgba(12, 12, 24, .08); --band-glow: rgba(35, 103, 242, .07); }
 main > section:nth-of-type(even):not(.hero):not(.cta), main > div > section:nth-of-type(even):not(.cta) {
-	background:
-		radial-gradient(80% 60% at 50% 0%, var(--band-glow), transparent 70%),
-		var(--band);
-	border-block: 1px solid var(--band-line);
-	position: relative;
+	position: relative; color: var(--text);
+	background: radial-gradient(80% 60% at 50% 0%, var(--band-glow), transparent 70%), var(--bg);
+}
+:root:not([data-theme="light"]) main > section:nth-of-type(even):not(.hero):not(.cta), :root:not([data-theme="light"]) main > div > section:nth-of-type(even):not(.cta) {
+	--bg: #f4f4f8; --bg-2: #ebebf1; --solid: #ffffff; --solid-2: #f6f6f9;
+	--surface: rgba(12, 12, 24, .03); --surface-2: rgba(12, 12, 24, .055);
+	--line: rgba(12, 12, 24, .1); --line-2: rgba(12, 12, 24, .18);
+	--text: #0b0b10; --text-2: #2a2a35; --muted: #55556a; --dim: #85859a;
+	--fg: 12, 12, 24; --glass: rgba(255, 255, 255, .8);
+	--fam: #0b0b10; --fam-ink: #ffffff;
+	--shadow: 0 24px 60px -28px rgba(20, 20, 50, .22); --grid-op: .7;
+	--c: #0b0b10; --cl: #0b0b10; --ci: #0b0b10; --c2: #3a3a48; --g: 12, 12, 24; --con: #ffffff; --ct: var(--fam);
+	--band-glow: rgba(35, 103, 242, .10);
+	color-scheme: light;
+}
+:root[data-theme="light"] main > section:nth-of-type(even):not(.hero):not(.cta), :root[data-theme="light"] main > div > section:nth-of-type(even):not(.cta) {
+	--bg: #0d0d16; --bg-2: #12121c; --solid: #14141e; --solid-2: #1a1a26;
+	--surface: rgba(255, 255, 255, .04); --surface-2: rgba(255, 255, 255, .07);
+	--line: rgba(255, 255, 255, .1); --line-2: rgba(255, 255, 255, .17);
+	--text: #f6f6f8; --text-2: #dcdce4; --muted: #a6a6b5; --dim: #74748a;
+	--fg: 255, 255, 255; --glass: rgba(10, 10, 14, .66);
+	--fam: #ffffff; --fam-ink: #07070a;
+	--shadow: 0 24px 60px -24px rgba(0, 0, 0, .7); --grid-op: .5;
+	--c: #ffffff; --cl: #ffffff; --ci: #07070a; --c2: #d4d4dc; --g: 255, 255, 255; --con: #07070a; --ct: var(--fam);
+	--band-glow: rgba(130, 71, 219, .22);
+	color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme]) main > section:nth-of-type(even):not(.hero):not(.cta), :root:not([data-theme]) main > div > section:nth-of-type(even):not(.cta) {
+		--bg: #0d0d16; --bg-2: #12121c; --solid: #14141e; --solid-2: #1a1a26;
+	--surface: rgba(255, 255, 255, .04); --surface-2: rgba(255, 255, 255, .07);
+	--line: rgba(255, 255, 255, .1); --line-2: rgba(255, 255, 255, .17);
+	--text: #f6f6f8; --text-2: #dcdce4; --muted: #a6a6b5; --dim: #74748a;
+	--fg: 255, 255, 255; --glass: rgba(10, 10, 14, .66);
+	--fam: #ffffff; --fam-ink: #07070a;
+	--shadow: 0 24px 60px -24px rgba(0, 0, 0, .7); --grid-op: .5;
+	--c: #ffffff; --cl: #ffffff; --ci: #07070a; --c2: #d4d4dc; --g: 255, 255, 255; --con: #07070a; --ct: var(--fam);
+	--band-glow: rgba(130, 71, 219, .22);
+	color-scheme: dark;
+	}
 }
 main > section:nth-of-type(even):not(.hero):not(.cta)::after, main > div > section:nth-of-type(even):not(.cta)::after {
-	content: ""; position: absolute; inset-inline: 0; top: -1px; height: 1px; pointer-events: none;
+	content: ""; position: absolute; inset-inline: 0; top: 0; height: 2px; pointer-events: none;
 	background: linear-gradient(90deg, transparent, #8247DB, #2367F2, #25D366, #FACC15, transparent);
-	background-size: 200% 100%; animation: bsweep 6s linear infinite; opacity: .8;
+	background-size: 200% 100%; animation: bsweep 6s linear infinite; opacity: .9;
 }
-/* Cards on a band sit on the base colour so they still stand out. */
-main > section:nth-of-type(even) .card, main > section:nth-of-type(even) .value, main > section:nth-of-type(even) .feature,
-main > section:nth-of-type(even) .post-card, main > section:nth-of-type(even) .sector-card, main > section:nth-of-type(even) .step,
-main > section:nth-of-type(even) .faq__item, main > section:nth-of-type(even) .panel, main > section:nth-of-type(even) .stats,
-main > section:nth-of-type(even) .sibling, main > section:nth-of-type(even) .stage, main > section:nth-of-type(even) .which__row,
-main > section:nth-of-type(even) .sectors a, main > section:nth-of-type(even) .form, main > section:nth-of-type(even) .book__form { background: var(--bg); }
-:root[data-theme="light"] main > section:nth-of-type(even) .card, :root[data-theme="light"] main > section:nth-of-type(even) .value,
-:root[data-theme="light"] main > section:nth-of-type(even) .feature, :root[data-theme="light"] main > section:nth-of-type(even) .post-card,
-:root[data-theme="light"] main > section:nth-of-type(even) .sector-card, :root[data-theme="light"] main > section:nth-of-type(even) .step,
-:root[data-theme="light"] main > section:nth-of-type(even) .faq__item, :root[data-theme="light"] main > section:nth-of-type(even) .panel,
-:root[data-theme="light"] main > section:nth-of-type(even) .stats, :root[data-theme="light"] main > section:nth-of-type(even) .sibling,
-:root[data-theme="light"] main > section:nth-of-type(even) .stage, :root[data-theme="light"] main > section:nth-of-type(even) .which__row,
-:root[data-theme="light"] main > section:nth-of-type(even) .sectors a { background: #ffffff; }
+/* Logo variants follow the band, not the page. */
+:root:not([data-theme="light"]) main > section:nth-of-type(even):not(.hero):not(.cta) .on-light, :root:not([data-theme="light"]) main > div > section:nth-of-type(even):not(.cta) .on-light { display: block !important; }
+:root:not([data-theme="light"]) main > section:nth-of-type(even):not(.hero):not(.cta) .on-dark, :root:not([data-theme="light"]) main > div > section:nth-of-type(even):not(.cta) .on-dark { display: none !important; }
+:root[data-theme="light"] main > section:nth-of-type(even):not(.hero):not(.cta) .on-light, :root[data-theme="light"] main > div > section:nth-of-type(even):not(.cta) .on-light { display: none !important; }
+:root[data-theme="light"] main > section:nth-of-type(even):not(.hero):not(.cta) .on-dark, :root[data-theme="light"] main > div > section:nth-of-type(even):not(.cta) .on-dark { display: block !important; }
+:root { --band: #11111a; } :root[data-theme="light"] { --band: #eceef4; }
 /* The manifesto is its own band. */
 .manifesto { background: linear-gradient(180deg, var(--bg), var(--band) 30%, var(--band) 70%, var(--bg)); }
 @media (max-width: 860px) {
