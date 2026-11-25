@@ -13,7 +13,7 @@ $steps = (array) kf_get( 'flow.steps' );
 	<svg class="beams__svg" aria-hidden="true"><defs></defs></svg>
 
 	<?php foreach ( $steps as $i => $st ) : $b = kf_brand( $st[0] ); ?>
-		<a class="beams__node beams__node--<?php echo (int) $i; ?>" href="<?php echo esc_url( kf_company_url( $st[0] ) ); ?>" data-beam-node style="--c: <?php echo esc_attr( $b['color'] ); ?>; --g: <?php echo esc_attr( $b['glow'] ); ?>">
+		<a class="beams__node beams__node--<?php echo (int) $i; ?>" href="<?php echo esc_url( kf_company_url( $st[0] ) ); ?>" data-beam-node style="<?php echo esc_attr( kf_brand_style( $b['slug'] ) ); ?>">
 			<span class="beams__icon"><?php echo kf_icon( $st[0] ); // phpcs:ignore ?></span>
 			<span class="beams__name" dir="ltr"><?php echo esc_html( $b['name'] ); ?></span>
 		</a>
@@ -28,7 +28,7 @@ $steps = (array) kf_get( 'flow.steps' );
 
 <ol class="steps">
 	<?php foreach ( $steps as $i => $st ) : $b = kf_brand( $st[0] ); ?>
-		<li class="step reveal" style="--c: <?php echo esc_attr( $b['color'] ); ?>; --d: <?php echo esc_attr( 0.08 * $i ); ?>s">
+		<li class="step reveal" style="<?php echo esc_attr( kf_brand_style( $b['slug'] ) ); ?>; --d: <?php echo esc_attr( 0.08 * $i ); ?>s">
 			<span class="step__n" dir="ltr">0<?php echo (int) $i + 1; ?></span>
 			<span class="step__brand" dir="ltr"><?php echo esc_html( $b['name'] ); ?></span>
 			<h3><?php echo esc_html( $st[1] ); ?></h3>

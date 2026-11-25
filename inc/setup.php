@@ -42,6 +42,7 @@ add_action(
 				'ajax'    => admin_url( 'admin-ajax.php' ),
 				'lang'    => kf_lang(),
 				'rotate'  => kf_get( 'hero.rotate' ),
+				'rotateStyles' => array_map( 'kf_brand_style', array( 'kemarq', 'kepixel', 'kechat', 'keclinic' ) ),
 				'i18n'    => array(
 					'sending'  => kf_get( 'contact.sending' ),
 					'send'     => kf_get( 'contact.send' ),
@@ -52,7 +53,7 @@ add_action(
 			)
 		);
 		// The theme ships no block styles on the marketing pages.
-		if ( is_front_page() || get_query_var( 'kf_company' ) || is_page( array( 'about', 'contact' ) ) || is_404() ) {
+		if ( is_front_page() || kf_route() || is_404() ) {
 			wp_dequeue_style( 'wp-block-library' );
 			wp_dequeue_style( 'wp-block-library-theme' );
 			wp_dequeue_style( 'global-styles' );
@@ -68,8 +69,8 @@ add_action(
 	function () {
 		$font = kf_is_rtl() ? 'readex-pro-arabic-wght-normal.woff2' : 'readex-pro-latin-wght-normal.woff2';
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( KF_URI . '/assets/fonts/' . $font ) );
-		echo '<meta name="theme-color" content="#06060a">' . "\n";
-		echo "<script>document.documentElement.classList.add('js')</script>\n";
+		echo '<meta name="theme-color" content="#07070a" media="(prefers-color-scheme: dark)">' . "\n";
+		echo '<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">' . "\n";
 		if ( ! has_site_icon() ) {
 			printf( '<link rel="icon" type="image/svg+xml" href="%s">' . "\n", esc_url( KF_URI . '/assets/img/favicon.svg' ) );
 		}
@@ -85,60 +86,9 @@ remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'rsd_link' );
 remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 
-/* ---------- Company pages: /companies/{slug}/ ---------- */
-add_action(
-	'init',
-	function () {
-		add_rewrite_rule( '^companies/(kepixel|kemarq|kechat|keclinic)/?$', 'index.php?kf_company=$matches[1]', 'top' );
-		add_rewrite_rule( '^companies/?$', 'index.php?kf_company=all', 'top' );
-	}
-);
-add_filter(
-	'query_vars',
-	function ( $vars ) {
-		$vars[] = 'kf_company';
-		return $vars;
-	}
-);
-add_filter(
-	'template_include',
-	function ( $template ) {
-		$slug = get_query_var( 'kf_company' );
-		if ( 'all' === $slug ) {
-			wp_safe_redirect( kf_url( '#companies' ), 301 );
-			exit;
-		}
-		if ( $slug && kf_brand( $slug ) ) {
-			global $wp_query;
-			$wp_query->is_404  = false;
-			$wp_query->is_home = false;
-			status_header( 200 );
-			return KF_DIR . '/company.php';
-		}
-		return $template;
-	}
-);
-
 /* ---------- First activation: pages, front page, permalinks ---------- */
 add_action( 'after_switch_theme', 'kf_activate' );
 function kf_activate() {
-	$pages = array(
-		'about'   => 'About — من نحن',
-		'contact' => 'Contact — تواصل معنا',
-	);
-	foreach ( $pages as $slug => $title ) {
-		if ( ! get_page_by_path( $slug ) ) {
-			wp_insert_post(
-				array(
-					'post_type'    => 'page',
-					'post_status'  => 'publish',
-					'post_name'    => $slug,
-					'post_title'   => $title,
-					'post_content' => '<!-- Content is rendered by the KeFamily theme (page-' . $slug . '.php). -->',
-				)
-			);
-		}
-	}
 	if ( ! get_option( 'permalink_structure' ) ) {
 		update_option( 'permalink_structure', '/%postname%/' );
 	}

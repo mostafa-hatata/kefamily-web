@@ -77,7 +77,7 @@ jobs:
         if: steps.secret.outputs.ok == 'true'
         run: |
           fail=0
-          for p in "/" "/?lang=en" "/about/" "/contact/" "/companies/kepixel/" "/companies/kemarq/" "/companies/kechat/" "/companies/keclinic/"; do
+          for p in "/" "/?lang=en" "/companies/" "/companies/kepixel/" "/companies/kemarq/" "/companies/kechat/" "/companies/keclinic/" "/solutions/" "/solutions/ecommerce/" "/solutions/clinics/" "/solutions/education/" "/solutions/nonprofits/" "/solutions/services/" "/solutions/apps/" "/how-it-works/" "/about/" "/careers/" "/partners/" "/faq/" "/contact/" "/privacy-policy/" "/terms/" "/wp-sitemap.xml"; do
             case "$p" in *\?*) sep='&' ;; *) sep='?' ;; esac
             code=$(curl -s -o /tmp/page.html -w '%{http_code}' "$SITE_URL$p${sep}nocache=$GITHUB_RUN_ID" || true)
             if [ "$code" != "200" ]; then echo "::error::$p returned $code"; fail=1; continue; fi

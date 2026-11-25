@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.1.0 — 2026-11-25
+
+Brand & identity
+- Real brand colours taken from each live site: KePixel blue #2367F2,
+  KeMarq purple #8247DB, KeChat green #25D366, KeClinic yellow #FACC15.
+- KeFamily itself is now white/neutral: new mark (four family tiles in the
+  family colour around a heart holding the four brand colours), white
+  primary buttons, neutral glows. Brand colours appear only in brand
+  contexts; the hero word rotator switches to each brand's colour.
+- Light + dark mode (follows the system, toggle in the nav, remembered).
+
+Pages (21 routes × Arabic/English = 42 URLs)
+- New: /companies/, /solutions/ + six industry pages, /how-it-works/,
+  /careers/, /partners/, /faq/, /privacy-policy/, /terms/.
+- Router (`inc/routes.php`) drives URLs, titles, descriptions,
+  breadcrumbs and the sitemap from one table.
+- Navigation with Companies/Solutions dropdowns; full mobile menu; footer
+  links to every page.
+
+Technical SEO
+- Unique title/description per URL, canonical, hreflang (ar/en/x-default),
+  OG/Twitter, Organization + WebSite + BreadcrumbList + Service + FAQPage
+  schema, visible breadcrumbs, one H1 and no heading skips on every page,
+  all 42 URLs in the XML sitemap; audited locally with 0 issues.
+
 ## 1.0.3 — 2026-11-25
 
 - KeClinic brand colour changed to yellow (#FACC15) everywhere: card,

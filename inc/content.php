@@ -12,36 +12,64 @@ defined( 'ABSPATH' ) || exit;
  * Brand data shared by both languages (non-translatable).
  */
 function kf_brands_meta() {
+	// Colours taken from each brand's own live website (Nov 2026); KeClinic = yellow per Mostafa.
+	// color = brand fill, light = text/icon on dark, ink = text/icon on light, glow = rgb of color.
 	return array(
 		'kepixel'  => array(
 			'name'  => 'KePixel',
 			'url'   => 'https://kepixel.online',
 			'host'  => 'kepixel.online',
-			'color' => '#8B5CF6',
-			'glow'  => '139, 92, 246',
+			'color' => '#2367F2',
+			'light' => '#6FA0FF',
+			'ink'   => '#1650C8',
+			'glow'  => '35, 103, 242',
+			'alt'   => '#38BDF8',
 		),
 		'kemarq'   => array(
 			'name'  => 'KeMarq',
 			'url'   => 'https://kemarq.net',
 			'host'  => 'kemarq.net',
-			'color' => '#FF7A45',
-			'glow'  => '255, 122, 69',
+			'color' => '#8247DB',
+			'light' => '#C2A1F6',
+			'ink'   => '#6A34C2',
+			'glow'  => '130, 71, 219',
+			'alt'   => '#9B62ED',
 		),
 		'kechat'   => array(
 			'name'  => 'KeChat',
 			'url'   => 'https://kechat.online',
 			'host'  => 'kechat.online',
-			'color' => '#22D39A',
-			'glow'  => '34, 211, 154',
+			'color' => '#25D366',
+			'light' => '#5BE38F',
+			'ink'   => '#0F8A45',
+			'glow'  => '37, 211, 102',
+			'alt'   => '#22D3EE',
 		),
 		'keclinic' => array(
 			'name'  => 'KeClinic',
 			'url'   => '',
 			'host'  => '',
 			'color' => '#FACC15',
+			'light' => '#FDE047',
+			'ink'   => '#A16207',
 			'glow'  => '250, 204, 21',
+			'alt'   => '#F59E0B',
 		),
 	);
+}
+
+/** Inline CSS custom properties for a brand context. */
+function kf_brand_style( $slug ) {
+	$m = kf_brands_meta();
+	if ( ! isset( $m[ $slug ] ) ) {
+		return '';
+	}
+	$b = $m[ $slug ];
+	$on = in_array( $slug, array( 'kechat', 'keclinic' ), true ) ? '#06130B' : '#FFFFFF';
+	if ( 'keclinic' === $slug ) {
+		$on = '#1A1400';
+	}
+	return sprintf( '--c:%s;--cl:%s;--ci:%s;--g:%s;--c2:%s;--con:%s', $b['color'], $b['light'], $b['ink'], $b['glow'], $b['alt'], $on );
 }
 
 /**
@@ -481,5 +509,6 @@ function kf_content() {
 		),
 	);
 
+	$content = array_replace_recursive( $content, kf_content_pages() );
 	return $content;
 }

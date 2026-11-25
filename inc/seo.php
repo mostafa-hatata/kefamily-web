@@ -1,8 +1,10 @@
 <?php
 /**
- * SEO: titles, meta, Open Graph, hreflang, JSON-LD, staging noindex.
+ * Technical SEO: titles, meta description, canonical, hreflang, Open Graph,
+ * Twitter, JSON-LD (Organization, WebSite, BreadcrumbList, Service, FAQPage),
+ * XML sitemap, staging noindex.
  *
- * Skips its own tags when Yoast / Rank Math is active.
+ * Skips its own head tags when Yoast / Rank Math is active.
  *
  * @package KeFamily
  */
@@ -29,31 +31,24 @@ add_filter(
 				'nofollow' => true,
 			);
 		}
+		$robots['max-image-preview'] = 'large';
 		return $robots;
 	}
 );
 
-/** Page-specific title / description. */
+/** Title + description for whatever is being shown. */
 function kf_page_meta() {
-	$title = kf_get( 'meta.title' );
-	$desc  = kf_get( 'meta.description' );
-	$slug  = get_query_var( 'kf_company' );
-	if ( $slug && ( $b = kf_brand( $slug ) ) ) {
-		$title = $b['name'] . ' — ' . rtrim( $b['headline'], '.。' ) . ' | KeFamily';
-		$desc  = $b['desc'];
-	} elseif ( is_page( 'about' ) ) {
-		$title = kf_is_rtl() ? 'من نحن | KeFamily — الشركة الأم لـ KePixel وKeMarq وKeChat وKeClinic' : 'About KeFamily — parent of KePixel, KeMarq, KeChat & KeClinic';
-		$desc  = kf_get( 'about.sub' );
-	} elseif ( is_page( 'contact' ) ) {
-		$title = kf_get( 'contact.title' ) . ' — ' . ( kf_is_rtl() ? 'واتساب ونموذج تواصل' : 'WhatsApp & contact form' ) . ' | KeFamily';
-		$desc  = kf_get( 'contact.sub' );
-	} elseif ( is_404() ) {
-		$title = kf_get( 'notfound.title' ) . ' | KeFamily';
-	} elseif ( ! is_front_page() && is_singular() ) {
-		$title = get_the_title() . ' | KeFamily';
-		$desc  = wp_strip_all_tags( get_the_excerpt() );
+	if ( kf_route() ) {
+		$m = kf_route_meta();
+		return array( $m['title'], $m['desc'] );
 	}
-	return array( $title, $desc );
+	if ( is_404() ) {
+		return array( kf_get( 'notfound.title' ) . ' | KeFamily', kf_get( 'meta.description' ) );
+	}
+	if ( is_singular() ) {
+		return array( get_the_title() . ' | KeFamily', wp_strip_all_tags( get_the_excerpt() ) );
+	}
+	return array( kf_get( 'meta.title' ), kf_get( 'meta.description' ) );
 }
 
 add_filter(
@@ -68,21 +63,32 @@ add_filter(
 	20
 );
 
+/** Clean (language-less) absolute URL of the current page. */
+function kf_current_base_url() {
+	$k = kf_route();
+	if ( $k ) {
+		return 'home' === $k ? home_url( '/' ) : kf_route_url( $k, 'ar' );
+	}
+	$path = wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH );
+	return home_url( $path ? $path : '/' );
+}
+
+function kf_json_ld( $data ) {
+	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+}
+
 add_action(
 	'wp_head',
 	function () {
-		$path = wp_parse_url( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/', PHP_URL_PATH );
-		$base = home_url( $path ? $path : '/' );
-		$home_path = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
-		if ( '/' !== $home_path && $home_path && 0 === strpos( (string) $path, rtrim( $home_path, '/' ) ) ) {
-			$base = home_url( substr( $path, strlen( rtrim( $home_path, '/' ) ) ) );
-		}
-		$ar = $base;
-		$en = add_query_arg( 'lang', 'en', $base );
+		$base = kf_current_base_url();
+		$ar   = $base;
+		$en   = add_query_arg( 'lang', 'en', $base );
 
-		echo '<link rel="alternate" hreflang="ar" href="' . esc_url( $ar ) . '">' . "\n";
-		echo '<link rel="alternate" hreflang="en" href="' . esc_url( $en ) . '">' . "\n";
-		echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $ar ) . '">' . "\n";
+		if ( ! is_404() ) {
+			echo '<link rel="alternate" hreflang="ar" href="' . esc_url( $ar ) . '">' . "\n";
+			echo '<link rel="alternate" hreflang="en" href="' . esc_url( $en ) . '">' . "\n";
+			echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $ar ) . '">' . "\n";
+		}
 
 		if ( kf_has_seo_plugin() ) {
 			return;
@@ -90,34 +96,46 @@ add_action(
 		list( $title, $desc ) = kf_page_meta();
 		$canonical = kf_is_rtl() ? $ar : $en;
 		$og_image  = KF_URI . '/assets/img/og.png';
+
 		echo '<meta name="description" content="' . esc_attr( $desc ) . '">' . "\n";
-		echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
+		if ( ! is_404() ) {
+			echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
+		}
 		echo '<meta property="og:type" content="website">' . "\n";
 		echo '<meta property="og:site_name" content="KeFamily">' . "\n";
 		echo '<meta property="og:locale" content="' . ( kf_is_rtl() ? 'ar_SA' : 'en_US' ) . '">' . "\n";
+		echo '<meta property="og:locale:alternate" content="' . ( kf_is_rtl() ? 'en_US' : 'ar_SA' ) . '">' . "\n";
 		echo '<meta property="og:title" content="' . esc_attr( $title ) . '">' . "\n";
 		echo '<meta property="og:description" content="' . esc_attr( $desc ) . '">' . "\n";
 		echo '<meta property="og:url" content="' . esc_url( $canonical ) . '">' . "\n";
 		echo '<meta property="og:image" content="' . esc_url( $og_image ) . '">' . "\n";
 		echo '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' . "\n";
+		echo '<meta property="og:image:alt" content="KeFamily — KePixel, KeMarq, KeChat, KeClinic">' . "\n";
 		echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+		echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '">' . "\n";
+		echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '">' . "\n";
+		echo '<meta name="twitter:image" content="' . esc_url( $og_image ) . '">' . "\n";
 
+		/* Organization (+ sub-organizations) on every page. */
 		$subs = array();
 		foreach ( array_keys( kf_brands_meta() ) as $slug ) {
 			$b   = kf_brand( $slug );
-			$org = array(
+			$sub = array(
 				'@type'       => 'Organization',
+				'@id'         => home_url( '/#' . $slug ),
 				'name'        => $b['name'],
 				'description' => $b['desc'],
 			);
 			if ( ! empty( $b['url'] ) ) {
-				$org['url'] = $b['url'];
+				$sub['url'] = $b['url'];
 			}
-			$subs[] = $org;
+			$subs[] = $sub;
 		}
-		$schema = array(
+		$same = array_values( array_filter( array( get_theme_mod( 'kf_linkedin', '' ), get_theme_mod( 'kf_instagram', '' ) ) ) );
+		$org  = array(
 			'@context'        => 'https://schema.org',
 			'@type'           => 'Organization',
+			'@id'             => home_url( '/#organization' ),
 			'name'            => 'KeFamily',
 			'url'             => home_url( '/' ),
 			'logo'            => KF_URI . '/assets/img/logo-mark.png',
@@ -131,21 +149,30 @@ add_action(
 			),
 			'areaServed'      => array( 'SA', 'EG', 'AE', 'KW', 'QA', 'BH', 'OM' ),
 		);
-		echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
-
-		$crumbs = array( array( kf_get( 'nav.home' ), kf_url() ) );
-		$slug   = get_query_var( 'kf_company' );
-		if ( $slug && ( $cb = kf_brand( $slug ) ) ) {
-			$crumbs[] = array( kf_get( 'nav.companies' ), kf_url( '#companies' ) );
-			$crumbs[] = array( $cb['name'], kf_company_url( $slug ) );
-		} elseif ( is_page( 'about' ) ) {
-			$crumbs[] = array( kf_get( 'nav.about' ), kf_url( 'about/' ) );
-		} elseif ( is_page( 'contact' ) ) {
-			$crumbs[] = array( kf_get( 'nav.contact' ), kf_url( 'contact/' ) );
+		if ( $same ) {
+			$org['sameAs'] = $same;
 		}
-		if ( count( $crumbs ) > 1 ) {
+		kf_json_ld( $org );
+
+		if ( 'home' === kf_route() ) {
+			kf_json_ld(
+				array(
+					'@context'   => 'https://schema.org',
+					'@type'      => 'WebSite',
+					'@id'        => home_url( '/#website' ),
+					'url'        => home_url( '/' ),
+					'name'       => 'KeFamily',
+					'inLanguage' => array( 'ar', 'en' ),
+					'publisher'  => array( '@id' => home_url( '/#organization' ) ),
+				)
+			);
+		}
+
+		/* Breadcrumbs. */
+		if ( kf_route() && 'home' !== kf_route() ) {
+			$m     = kf_route_meta();
 			$items = array();
-			foreach ( $crumbs as $i => $c ) {
+			foreach ( $m['crumbs'] as $i => $c ) {
 				$items[] = array(
 					'@type'    => 'ListItem',
 					'position' => $i + 1,
@@ -153,22 +180,65 @@ add_action(
 					'item'     => $c[1],
 				);
 			}
-			echo '<script type="application/ld+json">' . wp_json_encode(
+			kf_json_ld(
 				array(
 					'@context'        => 'https://schema.org',
 					'@type'           => 'BreadcrumbList',
 					'itemListElement' => $items,
-				),
-				JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-			) . '</script>' . "\n";
+				)
+			);
+		}
+
+		/* Service schema on company pages. */
+		$brand = kf_route_brand();
+		if ( $brand ) {
+			$b   = kf_brand( $brand );
+			$svc = array(
+				'@context'    => 'https://schema.org',
+				'@type'       => 'Service',
+				'name'        => $b['name'] . ' — ' . $b['tag'],
+				'description' => $b['desc'],
+				'provider'    => array( '@id' => home_url( '/#' . $brand ) ),
+				'areaServed'  => array( 'SA', 'EG', 'AE', 'KW', 'QA', 'BH', 'OM' ),
+				'serviceType' => $b['tag'],
+			);
+			if ( ! empty( $b['url'] ) ) {
+				$svc['url'] = $b['url'];
+			}
+			kf_json_ld( $svc );
 		}
 	},
 	5
 );
 
+/** FAQPage schema helper (used by templates that print an FAQ). */
+function kf_faq_schema( $items ) {
+	if ( ! $items ) {
+		return;
+	}
+	kf_json_ld(
+		array(
+			'@context'   => 'https://schema.org',
+			'@type'      => 'FAQPage',
+			'mainEntity' => array_map(
+				function ( $q ) {
+					return array(
+						'@type'          => 'Question',
+						'name'           => $q[0],
+						'acceptedAnswer' => array(
+							'@type' => 'Answer',
+							'text'  => $q[1],
+						),
+					);
+				},
+				array_values( $items )
+			),
+		)
+	);
+}
+
 /* ---------- XML sitemap ---------- */
 
-/* No author archives in the sitemap (they leak usernames and add thin pages). */
 add_filter(
 	'wp_sitemaps_add_provider',
 	function ( $provider, $name ) {
@@ -178,7 +248,6 @@ add_filter(
 	2
 );
 
-/* Private leads must never be listed. */
 add_filter(
 	'wp_sitemaps_post_types',
 	function ( $types ) {
@@ -187,9 +256,26 @@ add_filter(
 	}
 );
 
-/**
- * Adds the theme-routed pages (company pages) and every English version.
- */
+/* Theme routes replace the legacy About/Contact WP pages — keep those out. */
+add_filter(
+	'wp_sitemaps_posts_query_args',
+	function ( $args, $post_type ) {
+		if ( 'page' === $post_type ) {
+			$ids = array();
+			foreach ( array( 'about', 'contact' ) as $slug ) {
+				$p = get_page_by_path( $slug );
+				if ( $p ) {
+					$ids[] = $p->ID;
+				}
+			}
+			$args['post__not_in'] = array_merge( isset( $args['post__not_in'] ) ? (array) $args['post__not_in'] : array(), $ids );
+		}
+		return $args;
+	},
+	10,
+	2
+);
+
 add_action(
 	'init',
 	function () {
@@ -203,16 +289,10 @@ add_action(
 					$this->object_type = 'kefamily';
 				}
 				public function get_url_list( $page_num, $object_subtype = '' ) {
-					$paths = array( '', 'about/', 'contact/' );
-					foreach ( array_keys( kf_brands_meta() ) as $slug ) {
-						$paths[] = 'companies/' . $slug . '/';
-					}
-					$list = array();
-					foreach ( $paths as $p ) {
-						if ( '' !== $p ) { // Arabic home is already in the core pages sitemap.
-							$list[] = array( 'loc' => home_url( '/' . $p ) );
-						}
-						$list[] = array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' . $p ) ) );
+					$list = array( array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' ) ) ) );
+					foreach ( kf_routes() as $route ) {
+						$list[] = array( 'loc' => home_url( '/' . $route[0] ) );
+						$list[] = array( 'loc' => add_query_arg( 'lang', 'en', home_url( '/' . $route[0] ) ) );
 					}
 					return $list;
 				}
@@ -223,24 +303,4 @@ add_action(
 		}
 		wp_register_sitemap_provider( 'kefamily', new KF_Sitemap_Provider() );
 	}
-);
-
-/* Keep the About/Contact placeholder pages out of the default pages sitemap (already listed above with both languages). */
-add_filter(
-	'wp_sitemaps_posts_query_args',
-	function ( $args, $post_type ) {
-		if ( 'page' === $post_type ) {
-			$ids = array();
-			foreach ( array( 'about', 'contact' ) as $slug ) {
-				$p = get_page_by_path( $slug );
-				if ( $p ) {
-					$ids[] = $p->ID;
-				}
-			}
-			$args['post__not_in'] = isset( $args['post__not_in'] ) ? array_merge( (array) $args['post__not_in'], $ids ) : $ids;
-		}
-		return $args;
-	},
-	10,
-	2
 );

@@ -26,6 +26,14 @@ function kf_icon( $name, $class = '' ) {
 		'spark'     => '<path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/>',
 		'linkedin'  => '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.6v.1M11.5 16v-3.2c0-1.4.9-2.3 2.1-2.3s1.9.9 1.9 2.3V16"/>',
 		'instagram' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/>',
+		'sun'       => '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+		'moon'      => '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+		'chev'      => '<path d="M6 9l6 6 6-6"/>',
+		'cart'      => '<path d="M3 4h2.2l2.2 11h10.4l2-8H6.3"/><circle cx="9.5" cy="19.5" r="1.5"/><circle cx="16.5" cy="19.5" r="1.5"/>',
+		'school'    => '<path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v5c1.6 1.6 3.4 2.4 5.5 2.4s3.9-.8 5.5-2.4v-5M21.5 9v5"/>',
+		'heart'     => '<path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20z"/>',
+		'briefcase' => '<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18"/>',
+		'phone'     => '<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
 		'shield'    => '<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12l2.2 2.2 4.3-4.4"/>',
 		/* Company glyphs */
 		'kepixel'   => '<rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="currentColor"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="currentColor"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/>',
@@ -40,20 +48,37 @@ function kf_icon( $name, $class = '' ) {
 }
 
 /**
- * KeFamily mark: four brand-coloured tiles orbiting a core — the family.
+ * KeFamily mark: four family tiles in the family colour (white on dark,
+ * ink on light — via currentColor) around a heart that holds the four
+ * brand colours.
  */
 function kf_logo_mark( $size = 32 ) {
-	$id = 'kfm' . wp_rand( 100, 999999 );
-	return '<svg class="kf-mark" width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 40 40" aria-hidden="true">'
-		. '<defs><linearGradient id="' . $id . '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#c9c3ff"/></linearGradient></defs>'
-		. '<rect x="3" y="3" width="15" height="15" rx="5" fill="#8B5CF6"/>'
-		. '<rect x="22" y="3" width="15" height="15" rx="7.5" fill="#FF7A45"/>'
-		. '<rect x="3" y="22" width="15" height="15" rx="7.5" fill="#22D39A"/>'
-		. '<rect x="22" y="22" width="15" height="15" rx="5" fill="#FACC15"/>'
-		. '<circle cx="20" cy="20" r="6.2" fill="#06060a"/><circle cx="20" cy="20" r="3.4" fill="url(#' . $id . ')"/>'
+	return '<svg class="kf-mark" width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 40 40" aria-hidden="true" focusable="false">'
+		. '<rect x="3" y="3" width="15" height="15" rx="5" fill="currentColor"/>'
+		. '<rect x="22" y="3" width="15" height="15" rx="7.5" fill="currentColor" opacity=".88"/>'
+		. '<rect x="3" y="22" width="15" height="15" rx="7.5" fill="currentColor" opacity=".88"/>'
+		. '<rect x="22" y="22" width="15" height="15" rx="5" fill="currentColor"/>'
+		. '<circle cx="20" cy="20" r="7.4" style="fill:var(--solid,#07070a)"/>'
+		. '<path d="M20 20V15A5 5 0 0 1 25 20Z" fill="#2367F2"/>'
+		. '<path d="M20 20H25A5 5 0 0 1 20 25Z" fill="#25D366"/>'
+		. '<path d="M20 20V25A5 5 0 0 1 15 20Z" fill="#FACC15"/>'
+		. '<path d="M20 20H15A5 5 0 0 1 20 15Z" fill="#8247DB"/>'
 		. '</svg>';
 }
 
 function kf_logo() {
 	return '<span class="kf-logo">' . kf_logo_mark( 30 ) . '<span class="kf-logo__word" dir="ltr">Ke<b>Family</b></span></span>';
+}
+
+/** Icon per sector. */
+function kf_sector_icon( $slug ) {
+	$map = array(
+		'ecommerce'  => 'cart',
+		'clinics'    => 'keclinic',
+		'education'  => 'school',
+		'nonprofits' => 'heart',
+		'services'   => 'briefcase',
+		'apps'       => 'phone',
+	);
+	return kf_icon( isset( $map[ $slug ] ) ? $map[ $slug ] : 'spark' );
 }

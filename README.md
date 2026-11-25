@@ -18,7 +18,9 @@ Official website theme for **KeFamily**, the parent company of
 ```
 style.css               theme header
 functions.php           bootstrap
-inc/content.php         ALL site copy (Arabic + English) — edit text here
+inc/content.php         home/company copy + brand colours (Arabic + English)
+inc/content-pages.php   copy for every other page (hubs, industries, legal…)
+inc/routes.php          URL table, titles, descriptions, breadcrumbs
 inc/helpers.php         language + URL helpers
 inc/setup.php           assets, routing (/companies/{slug}/), activation
 inc/seo.php             titles, meta, OG, hreflang, JSON-LD, staging noindex
@@ -26,10 +28,9 @@ inc/contact.php         contact form → "KeFamily Leads" in wp-admin + email
 inc/customizer.php      WhatsApp, leads email, KeClinic URL, socials
 inc/icons.php           inline SVG icons + logo
 front-page.php          home
-company.php             /companies/kepixel|kemarq|kechat|keclinic/
-page-about.php          /about/
-page-contact.php        /contact/
-template-parts/         card visuals, animated beams, CTA
+templates/              one file per page type (company, solution, how, about,
+                        careers, partners, faq, contact, legal, hubs)
+template-parts/         hero, breadcrumbs, bento, beams, FAQ, form, CTA…
 assets/                 css, js, fonts, images
 ```
 

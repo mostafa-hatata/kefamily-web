@@ -111,7 +111,11 @@ function kf_brand( $slug ) {
 }
 
 function kf_company_url( $slug ) {
-	return kf_url( 'companies/' . $slug . '/' );
+	return kf_route_url( 'company-' . $slug );
+}
+
+function kf_solution_url( $slug ) {
+	return kf_route_url( 'solution-' . $slug );
 }
 
 /** Render a template part with args. */

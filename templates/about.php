@@ -1,32 +1,41 @@
 <?php
 /**
- * About page (slug: about).
+ * About — /about/
  *
  * @package KeFamily
  */
 
 defined( 'ABSPATH' ) || exit;
 get_header();
+
+kf_part(
+	'page-hero',
+	array(
+		'eyebrow' => kf_get( 'about.eyebrow' ),
+		'title'   => kf_get( 'about.title' ),
+		'sub'     => kf_get( 'about.sub' ),
+		'after'   => function () {
+			echo '<div class="about-family reveal" style="--d:.2s">';
+			foreach ( array_keys( kf_brands_meta() ) as $s ) {
+				$b = kf_brand( $s );
+				printf(
+					'<a href="%s" style="%s">%s<b dir="ltr">%s</b></a>',
+					esc_url( kf_company_url( $s ) ),
+					esc_attr( kf_brand_style( $s ) ),
+					kf_icon( $s ), // phpcs:ignore
+					esc_html( $b['name'] )
+				);
+			}
+			echo '</div>';
+		},
+	)
+);
 ?>
-<section class="phero phero--about">
-	<div class="phero__glow" aria-hidden="true"></div>
-	<div class="hero__grid" aria-hidden="true"></div>
-	<div class="wrap phero__inner phero__inner--center">
-		<span class="eyebrow reveal"><?php kf_e( 'about.eyebrow' ); ?></span>
-		<h1 class="h1 reveal" style="--d:.08s"><?php kf_e( 'about.title' ); ?></h1>
-		<p class="lead reveal" style="--d:.16s"><?php kf_e( 'about.sub' ); ?></p>
-		<div class="about-family reveal" style="--d:.22s" aria-hidden="true">
-			<?php foreach ( array_keys( kf_brands_meta() ) as $s ) : $b = kf_brand( $s ); ?>
-				<span style="--c: <?php echo esc_attr( $b['color'] ); ?>; --g: <?php echo esc_attr( $b['glow'] ); ?>"><?php echo kf_icon( $s ); // phpcs:ignore ?><b dir="ltr"><?php echo esc_html( $b['name'] ); ?></b></span>
-			<?php endforeach; ?>
-		</div>
-	</div>
-</section>
 
 <section class="section">
 	<div class="wrap story">
 		<header class="head reveal">
-			<span class="eyebrow"><?php kf_e( 'about.story_t' ); ?></span>
+			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.story_t' ); ?></h2>
 		</header>
 		<ol class="timeline" data-timeline>
 			<span class="timeline__line" aria-hidden="true"><i data-timeline-fill></i></span>
@@ -41,11 +50,11 @@ get_header();
 	<div class="wrap mv">
 		<div class="mv__card spotlight reveal" data-spotlight>
 			<span class="beam" aria-hidden="true"></span>
-			<span class="eyebrow"><?php kf_e( 'about.mission_t' ); ?></span>
+			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.mission_t' ); ?></h2>
 			<p><?php kf_e( 'about.mission' ); ?></p>
 		</div>
 		<div class="mv__card spotlight reveal" data-spotlight style="--d:.08s">
-			<span class="eyebrow"><?php kf_e( 'about.vision_t' ); ?></span>
+			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.vision_t' ); ?></h2>
 			<p><?php kf_e( 'about.vision' ); ?></p>
 		</div>
 	</div>
@@ -54,7 +63,7 @@ get_header();
 <section class="section section--tight">
 	<div class="wrap">
 		<header class="head head--center reveal">
-			<span class="eyebrow"><?php kf_e( 'about.markets_t' ); ?></span>
+			<h2 class="eyebrow eyebrow--h"><?php kf_e( 'about.markets_t' ); ?></h2>
 		</header>
 		<ul class="markets">
 			<?php foreach ( (array) kf_get( 'about.markets' ) as $i => $m ) : ?>
