@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.4.0 — 2026-11-25
+
+Blog
+- 22 new articles, so every category has five: KeFamily, KePixel, KeMarq,
+  KeChat and KeClinic — each in English, Arabic, Russian and German
+  (100 article URLs). Seeded once from inc/articles/*.json (seed v3, with a
+  lock so two visitors can't seed twice); editable in wp-admin afterwards.
+- Every article links contextually to the matching pages on kepixel.online,
+  kemarq.net (same language) and kechat.online, and to KeFamily company pages
+  and sibling articles. All external URLs were checked (200).
+- Related articles prefer the same category; KeFamily-topic cards get a tag.
+- Sitemap: 192 URLs. Local audit: 0 issues, 0 broken links.
+
+Motion
+- Page-to-page view transitions, nav drop-in, 3D rise-in for cards with
+  automatic stagger, cascading lists, brand-colour underline sweep on
+  headings, floating icons, spinning gradient border on hovered cards,
+  drawn underlines and nudging arrows on links, drifting orbs in page
+  heroes, mouse spotlight in sections, cursor ring on desktop, typed
+  eyebrow on inner pages. Fixed: card tilt was cancelled by the reveal
+  transform; the primary button shine keyframes were being overridden.
+
 ## 1.3.1 — 2026-11-25
 
 Mobile review (390px, EN/AR/RU/DE, light + dark, menu and chat panel open):

@@ -14,7 +14,7 @@ $style = $topic && isset( kf_brands_meta()[ $topic ] ) ? kf_brand_style( $topic 
 ?>
 <article class="post-card reveal" style="<?php echo esc_attr( $style ); ?>;--d:<?php echo esc_attr( 0.05 * $i ); ?>s">
 	<div class="post-card__meta">
-		<?php if ( $style ) : ?><span class="tag" dir="ltr"><i class="dot" aria-hidden="true"></i><?php echo esc_html( kf_brand( $topic )['name'] ); ?></span><?php endif; ?>
+		<?php if ( $style ) : ?><span class="tag" dir="ltr"><i class="dot" aria-hidden="true"></i><?php echo esc_html( kf_brand( $topic )['name'] ); ?></span><?php elseif ( 'kefamily' === $topic ) : ?><span class="tag" dir="ltr"><i class="dot" aria-hidden="true" style="background:var(--fam)"></i>KeFamily</span><?php endif; ?>
 		<time datetime="<?php echo esc_attr( get_the_date( 'c', $p ) ); ?>"><?php echo esc_html( kf_date( $p ) ); ?></time>
 	</div>
 	<<?php echo esc_html( $hl ); ?> class="post-card__title"><a href="<?php echo esc_url( kf_post_url( $p ) ); ?>"><?php echo esc_html( get_the_title( $p ) ); ?></a></<?php echo esc_html( $hl ); ?>>

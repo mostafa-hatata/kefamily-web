@@ -56,7 +56,10 @@ get_header();
 </article>
 
 <?php
-$rel = kf_blog_query( 1, '', 3, array( $p->ID ) );
+$rel = kf_blog_query( 1, $topic, 3, array( $p->ID ) );
+if ( $rel->post_count < 3 ) {
+	$rel = kf_blog_query( 1, '', 3, array( $p->ID ) );
+}
 if ( $rel->have_posts() ) :
 	?>
 <section class="section">

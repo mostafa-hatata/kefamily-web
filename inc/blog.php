@@ -194,16 +194,31 @@ add_action(
 add_action(
 	'init',
 	function () {
-		$ver = 2;
+		$ver = 3;
 		if ( (int) get_option( 'kf_seed_posts' ) >= $ver ) {
 			return;
 		}
+		if ( get_transient( 'kf_seeding' ) ) {
+			return;
+		}
+		set_transient( 'kf_seeding', 1, 300 );
 		require_once KF_DIR . '/inc/seed-posts.php';
 		$cat = get_cat_ID( 'Insights' );
 		if ( ! $cat ) {
 			$cat = (int) wp_insert_term( 'Insights', 'category' )['term_id'];
 		}
-		foreach ( kf_seed_posts() as $slug => $article ) {
+		$all = kf_seed_posts();
+		foreach ( glob( KF_DIR . '/inc/articles/*.json' ) as $file ) {
+			$more = json_decode( (string) file_get_contents( $file ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			if ( is_array( $more ) ) {
+				$all = array_merge( $all, $more );
+			}
+		}
+		if ( function_exists( 'set_time_limit' ) ) {
+			set_time_limit( 300 ); // phpcs:ignore
+		}
+		wp_defer_term_counting( true );
+		foreach ( $all as $slug => $article ) {
 			foreach ( $article['langs'] as $lang => $a ) {
 				$exists = get_posts(
 					array(
@@ -241,7 +256,9 @@ add_action(
 		if ( $hello && ! get_post_meta( $hello->ID, '_kf_slug', true ) ) {
 			wp_trash_post( $hello->ID );
 		}
+		wp_defer_term_counting( false );
 		update_option( 'kf_seed_posts', $ver );
+		delete_transient( 'kf_seeding' );
 	},
 	20
 );

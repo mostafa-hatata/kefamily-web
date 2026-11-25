@@ -567,6 +567,55 @@
 		});
 	}
 
+	/* ---------- v1.4 motion ---------- */
+	if (!reduce) {
+		/* Auto-stagger grid children that reveal. */
+		$$('.bento, .values, .features, .posts, .sector-cards, .siblings, .steps, .stages, .which, .sectors, .stats, .faq').forEach(function (g) {
+			$$(':scope > .reveal, :scope > li.reveal, :scope > * > .reveal', g).forEach(function (el, i) {
+				if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', (Math.min(i, 8) * 0.07) + 's');
+			});
+		});
+		/* Floating icon offsets. */
+		$$('.value__icon, .dd__ico, .beams__icon, .contact__ico').forEach(function (el, i) { el.style.setProperty('--fi', i % 5); });
+		/* Lists cascade in. */
+		$$('.ticks, .chips-list, .pains, .footer ul, .book__agenda, .markets').forEach(function (ul) {
+			ul.classList.add('cascade');
+			Array.prototype.forEach.call(ul.children, function (li, i) { li.style.setProperty('--ci', i); });
+			io.observe(ul);
+		});
+		/* Inner page h1 underline sweep. */
+		$$('.phero .h1').forEach(function (h) { io.observe(h); });
+		/* Typed eyebrow on inner heroes. */
+		$$('.phero .eyebrow').slice(0, 1).forEach(function (el) {
+			var full = el.textContent.trim(); if (!full || full.length > 60) return;
+			el.textContent = ''; el.classList.add('typed');
+			var k = 0, tick = function () { k++; el.textContent = full.slice(0, k); if (k < full.length) setTimeout(tick, 38); else el.classList.add('done'); };
+			setTimeout(tick, 350);
+		});
+		/* Mouse spotlight inside sections. */
+		if (finePointer) {
+			$$('.section').forEach(function (sec) {
+				if (sec.classList.contains('section--flow') || sec.classList.contains('section--sectors')) return;
+				sec.setAttribute('data-spot', '');
+				sec.addEventListener('pointermove', function (e) {
+					var r = sec.getBoundingClientRect();
+					sec.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+					sec.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+				});
+			});
+			/* Cursor ring. */
+			var cur = doc.createElement('div'); cur.className = 'cursor'; cur.setAttribute('aria-hidden', 'true'); doc.body.appendChild(cur);
+			doc.addEventListener('pointermove', function (e) {
+				cur.style.setProperty('--cx', e.clientX + 'px'); cur.style.setProperty('--cy', e.clientY + 'px');
+				cur.classList.toggle('is-link', !!e.target.closest('a, button, summary, label, [role="radio"]'));
+			}, { passive: true });
+			doc.addEventListener('pointerdown', function () { cur.classList.add('is-down'); });
+			doc.addEventListener('pointerup', function () { cur.classList.remove('is-down'); });
+			doc.addEventListener('pointerleave', function () { cur.style.setProperty('--cx', '-100px'); });
+		}
+		/* Count-up for any big number that scrolls in again after theme change is handled by ticker. */
+	}
+
 	/* RTL marker for any script that needs it */
 	if (rtl) root.classList.add('is-rtl');
 })();
