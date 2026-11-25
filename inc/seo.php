@@ -344,3 +344,14 @@ add_action(
 		wp_register_sitemap_provider( 'kefamily', new KF_Sitemap_Provider() );
 	}
 );
+
+/* On the production domain the site must be indexable (staging hosts are forced noindex above). */
+add_action(
+	'init',
+	function () {
+		if ( ! kf_is_staging() && '0' === (string) get_option( 'blog_public' ) && ! get_option( 'kf_public_set' ) ) {
+			update_option( 'blog_public', '1' );
+			update_option( 'kf_public_set', 1 );
+		}
+	}
+);

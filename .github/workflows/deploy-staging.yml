@@ -1,7 +1,9 @@
-name: Deploy to staging
+name: Deploy
 
-# Every push to main deploys the theme to the Hostinger staging site over SSH,
-# then checks the live pages. Needs the repository secret HOSTINGER_SSH_KEY
+# Every push to main deploys the theme to the Hostinger site over SSH, then
+# checks the live pages. The site lives at kefamily.online once the domain is
+# connected; until then (or if that folder doesn't exist) it falls back to the
+# temporary staging domain. Needs the repository secret HOSTINGER_SSH_KEY
 # (private half of the "github-actions-kefamily-web" key added in
 # hPanel → Advanced → SSH Access).
 
@@ -18,8 +20,6 @@ env:
   SSH_HOST: 46.202.156.101
   SSH_PORT: '65002'
   SSH_USER: u322190690
-  SITE_URL: https://annual-cyan-antelope-31.hostingersite.com
-  THEME_PATH: domains/annual-cyan-antelope-31.hostingersite.com/public_html/wp-content/themes/kefamily
 
 jobs:
   deploy:
@@ -53,6 +53,19 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
+      - name: Resolve site folder and URL
+        if: steps.secret.outputs.ok == 'true'
+        run: |
+          if ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "test -f \$HOME/domains/kefamily.online/public_html/wp-config.php"; then
+            DOMAIN=kefamily.online
+          else
+            DOMAIN=annual-cyan-antelope-31.hostingersite.com
+          fi
+          echo "SITE_DIR=domains/$DOMAIN/public_html" >> "$GITHUB_ENV"
+          echo "THEME_PATH=domains/$DOMAIN/public_html/wp-content/themes/kefamily" >> "$GITHUB_ENV"
+          echo "SITE_URL=https://$DOMAIN" >> "$GITHUB_ENV"
+          echo "Deploying to $DOMAIN"
+
       - name: Back up current theme on the server
         if: steps.secret.outputs.ok == 'true'
         run: |
@@ -71,7 +84,7 @@ jobs:
         continue-on-error: true
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
-            "cd \$HOME/domains/annual-cyan-antelope-31.hostingersite.com/public_html && (command -v wp >/dev/null && wp litespeed-purge all 2>/dev/null || true)"
+            "cd \$HOME/$SITE_DIR && (command -v wp >/dev/null && wp litespeed-purge all 2>/dev/null || true)"
 
       - name: Smoke test live pages
         if: steps.secret.outputs.ok == 'true'
