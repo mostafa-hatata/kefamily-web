@@ -17,12 +17,23 @@
 	/* ---------- Nav ---------- */
 	var nav = $('[data-nav]');
 	var dock = $('[data-dock]');
+	var dockHide = false;
+	/* Keep the floating dock off the closing CTA and the footer (they have the same buttons). */
+	if (dock && 'IntersectionObserver' in window) {
+		var seen = new Set();
+		var dio = new IntersectionObserver(function (en) {
+			en.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+			dockHide = seen.size > 0 && !dock.classList.contains('is-open');
+			dock.classList.toggle('show', window.scrollY > 480 && !dockHide);
+		}, { threshold: 0.15 });
+		document.querySelectorAll('.cta, .footer').forEach(function (el) { dio.observe(el); });
+	}
 	var bar = $('[data-progress]');
 	var heroVis = $('.hero__visual');
 	var onScroll = function () {
 		var y = window.scrollY;
 		if (nav) nav.classList.toggle('is-scrolled', y > 24);
-		if (dock) dock.classList.toggle('show', y > 480);
+		if (dock) dock.classList.toggle('show', y > 480 && !dockHide);
 		if (bar) { var max = doc.documentElement.scrollHeight - window.innerHeight; bar.style.setProperty('--p', max > 0 ? Math.min(1, y / max) : 0); }
 		if (heroVis && !reduce && y < window.innerHeight * 1.2) heroVis.style.setProperty('--py', (y * 0.18) + 'px');
 	};

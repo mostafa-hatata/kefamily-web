@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.1 — 2026-11-25
+
+Mobile review (390px, EN/AR/RU/DE, light + dark, menu and chat panel open):
+- Home hero on phones: headline and buttons first, orbit below (was pushing
+  the title under the fold).
+- Floating dock hides while the closing CTA or the footer is on screen (they
+  carry the same buttons), so it never covers them; smaller pulse ring.
+- Footer links in two columns on phones, extra bottom space; tighter section
+  spacing; 44px+ tap targets for text links and FAQ rows.
+- Product screens: shorter event rows on phones; select fields styled like
+  inputs; booking "Confirm" button uses the primary style; plan badges no
+  longer stretch.
+
 ## 1.3.0 — 2026-11-25
 
 - Back to the v1.1 look (orbit hero, particles, aurora, marquee, bento cards
