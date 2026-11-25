@@ -1,0 +1,87 @@
+name: Deploy to staging
+
+# Every push to main deploys the theme to the Hostinger staging site over SSH,
+# then checks the live pages. Needs the repository secret HOSTINGER_SSH_KEY
+# (private half of the "github-actions-kefamily-web" key added in
+# hPanel → Advanced → SSH Access).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+env:
+  SSH_HOST: 46.202.156.101
+  SSH_PORT: '65002'
+  SSH_USER: u322190690
+  SITE_URL: https://annual-cyan-antelope-31.hostingersite.com
+  THEME_PATH: domains/annual-cyan-antelope-31.hostingersite.com/public_html/wp-content/themes/kefamily
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check secret
+        id: secret
+        env:
+          KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "::warning::HOSTINGER_SSH_KEY is not set yet — skipping deploy."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: PHP syntax check
+        if: steps.secret.outputs.ok == 'true'
+        run: find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
+
+      - name: Set up SSH
+        if: steps.secret.outputs.ok == 'true'
+        env:
+          KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Back up current theme on the server
+        if: steps.secret.outputs.ok == 'true'
+        run: |
+          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "mkdir -p \$HOME/kefamily-backups && if [ -d \"\$HOME/$THEME_PATH\" ]; then tar -czf \$HOME/kefamily-backups/theme-\$(date +%Y%m%d-%H%M%S).tgz -C \"\$HOME/$THEME_PATH\" . ; fi; ls -1t \$HOME/kefamily-backups/*.tgz 2>/dev/null | tail -n +11 | xargs -r rm -f"
+
+      - name: Upload theme
+        if: steps.secret.outputs.ok == 'true'
+        run: |
+          rsync -az --delete \
+            --exclude '.git' --exclude '.github' --exclude 'docs' \
+            -e "ssh -p $SSH_PORT" ./ "$SSH_USER@$SSH_HOST:$THEME_PATH/"
+
+      - name: Purge LiteSpeed cache (if available)
+        if: steps.secret.outputs.ok == 'true'
+        continue-on-error: true
+        run: |
+          ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "cd \$HOME/domains/annual-cyan-antelope-31.hostingersite.com/public_html && (command -v wp >/dev/null && wp litespeed-purge all 2>/dev/null || true)"
+
+      - name: Smoke test live pages
+        if: steps.secret.outputs.ok == 'true'
+        run: |
+          fail=0
+          for p in "/" "/?lang=en" "/about/" "/contact/" "/companies/kepixel/" "/companies/kemarq/" "/companies/kechat/" "/companies/keclinic/"; do
+            case "$p" in *\?*) sep='&' ;; *) sep='?' ;; esac
+            code=$(curl -s -o /tmp/page.html -w '%{http_code}' "$SITE_URL$p${sep}nocache=$GITHUB_RUN_ID" || true)
+            if [ "$code" != "200" ]; then echo "::error::$p returned $code"; fail=1; continue; fi
+            if grep -qiE 'Fatal error|critical error' /tmp/page.html; then echo "::error::$p shows a PHP error"; fail=1; fi
+            echo "OK $code $p"
+          done
+          exit $fail
