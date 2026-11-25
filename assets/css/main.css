@@ -1042,3 +1042,4 @@ main > section:nth-of-type(even) .sectors a, main > section:nth-of-type(even) .f
 	.tag { padding-block: 6px; }
 }
 .contact__list a { display: inline-block; padding-block: 10px; }
+.orbit__track:not(.orbit__track--inner) { z-index: 2; } .orbit__track--inner { z-index: 1; } .orbit__core { z-index: 3; }
