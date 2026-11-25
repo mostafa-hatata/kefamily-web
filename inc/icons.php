@@ -49,7 +49,7 @@ function kf_logo_mark( $size = 32 ) {
 		. '<rect x="3" y="3" width="15" height="15" rx="5" fill="#8B5CF6"/>'
 		. '<rect x="22" y="3" width="15" height="15" rx="7.5" fill="#FF7A45"/>'
 		. '<rect x="3" y="22" width="15" height="15" rx="7.5" fill="#22D39A"/>'
-		. '<rect x="22" y="22" width="15" height="15" rx="5" fill="#38BDF8"/>'
+		. '<rect x="22" y="22" width="15" height="15" rx="5" fill="#FACC15"/>'
 		. '<circle cx="20" cy="20" r="6.2" fill="#06060a"/><circle cx="20" cy="20" r="3.4" fill="url(#' . $id . ')"/>'
 		. '</svg>';
 }

@@ -38,8 +38,8 @@ function kf_brands_meta() {
 			'name'  => 'KeClinic',
 			'url'   => '',
 			'host'  => '',
-			'color' => '#38BDF8',
-			'glow'  => '56, 189, 248',
+			'color' => '#FACC15',
+			'glow'  => '250, 204, 21',
 		),
 	);
 }

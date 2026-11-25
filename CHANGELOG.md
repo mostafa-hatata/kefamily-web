@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3 — 2026-11-25
+
+- KeClinic brand colour changed to yellow (#FACC15) everywhere: card,
+  company page, logo mark, favicon, OG image, gradients, particles.
+- Nav offset below the WordPress admin bar for logged-in editors.
+
 ## 1.0.2 — 2026-11-25
 
 Technical SEO pass:

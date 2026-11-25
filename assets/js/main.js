@@ -71,7 +71,7 @@
 		var ctx = canvas.getContext('2d');
 		var dpr = Math.min(window.devicePixelRatio || 1, 2);
 		var W, H, parts = [], mouse = { x: 0, y: 0, tx: 0, ty: 0 }, running = true, raf;
-		var colors = ['167,139,250', '255,154,107', '75,227,176', '125,211,252', '255,255,255'];
+		var colors = ['167,139,250', '255,154,107', '75,227,176', '253,224,71', '255,255,255'];
 		var resize = function () {
 			var r = canvas.getBoundingClientRect();
 			W = r.width; H = r.height;
