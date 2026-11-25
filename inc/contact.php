@@ -66,7 +66,7 @@ add_action( 'wp_ajax_kf_nonce', 'kf_fresh_nonce' );
 add_action( 'wp_ajax_nopriv_kf_nonce', 'kf_fresh_nonce' );
 function kf_fresh_nonce() {
 	nocache_headers();
-	wp_send_json_success( array( 'nonce' => wp_create_nonce( 'kf_contact' ) ) );
+	wp_send_json_success( array( 'nonce' => wp_create_nonce( 'kf_contact' ), 'book' => wp_create_nonce( 'kf_book' ) ) );
 }
 
 add_action( 'wp_ajax_kf_contact', 'kf_handle_contact' );

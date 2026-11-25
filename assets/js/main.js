@@ -490,10 +490,16 @@
 				.then(function (r) { return r.json(); })
 				.then(function (res) {
 					if (!res || !res.ok) throw new Error('book');
-					var fd = new FormData();
-					fd.append('action', 'kf_book_log'); fd.append('nonce', B.nonce);
-					Object.keys(payload).forEach(function (k) { if (k !== 'website_hp' && k !== 'type') fd.append(k, payload[k]); });
-					fetch(KF.ajax, { method: 'POST', body: fd, credentials: 'same-origin' }).catch(function () {});
+					/* Fresh nonce first: pages may be served from cache. */
+					fetch(KF.ajax + '?action=kf_nonce', { credentials: 'same-origin', cache: 'no-store' })
+						.then(function (r) { return r.json(); })
+						.catch(function () { return null; })
+						.then(function (n) {
+							var fd = new FormData();
+							fd.append('action', 'kf_book_log'); fd.append('nonce', (n && n.success && n.data.book) || B.nonce);
+							Object.keys(payload).forEach(function (k) { if (k !== 'website_hp' && k !== 'type') fd.append(k, payload[k]); });
+							return fetch(KF.ajax, { method: 'POST', body: fd, credentials: 'same-origin' });
+						}).catch(function () {});
 					setStatus('ok', T.ok);
 					if (window.dataLayer) window.dataLayer.push({ event: 'book_meeting', meeting: meeting });
 					sel.hour = null; updateSum(); loadSlots(sel.date);

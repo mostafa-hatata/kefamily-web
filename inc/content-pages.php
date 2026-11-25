@@ -212,7 +212,7 @@ function kf_content_pages() {
 				'terms'     => array(
 					'crumb'     => 'الشروط والأحكام',
 					'seo_title' => 'الشروط والأحكام',
-					'seo_desc'  => 'شروط استخدام موقع KeFamily.',
+					'seo_desc'  => 'شروط استخدام موقع KeFamily: طريقة استخدام الموقع، ومعلومات خدمات شركات العائلة، والملكية الفكرية، وطرق التواصل معنا.',
 					'title'     => 'الشروط والأحكام',
 					'updated'   => 'آخر تحديث: 25 نوفمبر 2026',
 					'sections'  => array(
@@ -547,7 +547,7 @@ function kf_content_pages() {
 				'terms'     => array(
 					'crumb'     => 'Terms',
 					'seo_title' => 'Terms of use',
-					'seo_desc'  => 'Terms of use for the KeFamily website.',
+					'seo_desc'  => 'Terms of use for the KeFamily website: how to use the site, information about the family companies’ services, intellectual property and how to contact us.',
 					'title'     => 'Terms of use',
 					'updated'   => 'Last updated: 25 November 2026',
 					'sections'  => array(

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.3 — 2026-11-25
+
+Live review of kefamily.online (192 URLs crawled from the browser):
+- 0 broken links, 0 duplicate titles, canonical + hreflang on every page,
+  no noindex, no old staging URLs, valid JSON-LD; median response 71 ms.
+- Terms page meta descriptions were too short (EN/AR/RU) — rewritten.
+- Under ~24 simultaneous uncached requests the shared host returned
+  "Database Error" (MySQL connection limit). Turned on Hostinger's server
+  page cache (free, auto-cleared every 30 min) so traffic spikes are served
+  from cache.
+- Because pages can now be cached, the booking flow fetches a fresh nonce
+  before logging the lead (same as the contact form already did).
+
 ## 1.4.2 — 2026-11-25
 
 - Alternating section bands: every second section sits on a distinct
