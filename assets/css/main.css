@@ -648,3 +648,9 @@ html[dir="rtl"] .field input[dir="ltr"] { text-align: right; }
 	.manifesto { height: auto; } .manifesto__sticky { position: static; height: auto; padding: 100px 0; }
 	.manifesto__text .w { opacity: 1; }
 }
+
+/* WordPress admin bar (logged-in editors only) */
+.admin-bar .nav { top: 32px; }
+.admin-bar .mmenu { padding-top: 142px; }
+@media (max-width: 782px) { .admin-bar .nav { top: 46px; } }
+@media (max-width: 600px) { .admin-bar .nav { top: 0; } #wpadminbar { position: absolute; } }
